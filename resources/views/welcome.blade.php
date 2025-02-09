@@ -12,7 +12,7 @@
     <header class="text-gray-600 body-font bg-yellow-500 ">
   <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
     <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <img src="/images/eeeclogo.png" class="ml-2 rounded-full w-20 h-20 object-cover "/>
+      <img src="/images/eeechardwarelogo.jpg" class="ml-2 rounded-full w-20 h-20 object-cover "/>
       <span class="ml-3 text-xl">EEEC HARDWARE</span>
     </a>
     <nav class="md:mr-auto md:ml-4 md:py-1  md:pl-4 md:border-l md:border-black	flex flex-wrap items-center text-base justify-center">
