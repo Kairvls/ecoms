@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
     @vite('resources/css/app.css')
 </head>
 <body>
-  <div style="background-image: url('http://127.0.0.1:8000/images/hardwarebg.jpg');" class="flex justify-center items-center bg-cover bg-center bg-no-repeat bg-fixed h-screen">
+  <div style="background-image: url('http://127.0.0.1:8000/images/hardwareequipment.jpg');" class="flex justify-center items-center bg-cover bg-center bg-no-repeat bg-fixed h-screen">
 <div class="card">
   <div class="card2">
     <form class="form">
-      <p id="heading">ADMIN</p>
+      <p id="heading">Admin Login</p>
       <div class="field">
         <svg
           viewBox="0 0 16 16"

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tailwind in Laravel</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -38,7 +38,7 @@
 </header>
 
 <section class="snap-start">
-            <main style="background-image: url('http://127.0.0.1:8000/images/hardwarebg.jpg');"
+            <main style="background-image: url('http://127.0.0.1:8000/images/hardwareequipment.jpg');"
             class="sm:block sm:justify-center bg-eeec bg-cover bg-center sm:items-center">
            
           <div class="md:text-center bg-black bg-opacity-80 p-5">

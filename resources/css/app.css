@@ -145,3 +145,262 @@
   background-color: red;
   color: white;
 }
+
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--sidebar-bg);
+  color: var(--text-dark);
+}
+
+/* Fade-in animation for login box */
+.login-box {
+  position: absolute; /* Center the login box */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%) translateY(20px); /* Initial transform with vertical offset */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  width: 300px;
+  opacity: 0; /* Start invisible */
+  transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+.login-box.fade-in {
+  opacity: 1; /* Fully visible */
+  transform: translate(-50%, -50%) translateY(0); /* Reset vertical offset */
+}
+/* Style form elements */
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.login-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow-y: scroll; 
+}
+
+/* Sidebar */
+.sidebar {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16%;
+  margin-left: -5px;
+  height: 100vh;
+  background: var(--sidebar-bg);
+  z-index: 1000; /* Ensures sidebar stays on top */
+  transition: width 0.3s ease;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Sidebar when collapsed */
+
+/* Main Content */
+.main-content {
+  width: 100%;
+  margin-left: 19%; /* Matches the default sidebar width */
+  
+  transition: margin-left 0.3s ease;
+  position: relative;
+  z-index: 1; /* Ensures it stays below the sidebar */
+}
+
+
+.heading {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.head {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+
+/* Content Area */
+.content-area {
+  width: 95%;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* From Uiverse.io by WhiteNervosa */ 
+.textInputWrapper {
+  position: relative;
+  width: 400px;
+  margin: 12px 5px;
+  --accent-color: #a3e583;
+}
+
+.textInputWrapper:before {
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+.textInputWrapper:before,
+.textInputWrapper:after {
+  content: "";
+  left: 0;
+  right: 0;
+  position: absolute;
+  pointer-events: none;
+  bottom: -1px;
+  z-index: 4;
+  width: 100%;
+}
+
+.textInputWrapper:focus-within:before {
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.textInputWrapper:before {
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+.textInputWrapper:focus-within:before {
+  border-bottom: 1px solid var(--accent-color);
+  transform: scaleX(1);
+}
+
+.textInputWrapper:focus-within:after {
+  border-bottom: 2px solid var(--accent-color);
+  transform: scaleX(1);
+}
+
+.textInputWrapper:after {
+  content: "";
+  transform: scaleX(0);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  will-change: transform;
+  border-bottom: 2px solid var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.textInput::placeholder {
+  transition: opacity 250ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  opacity: 1;
+  user-select: none;
+  color: #252525;
+}
+
+.textInputWrapper .textInput {
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 2px 5px rgb(35 35 35 / 30%);
+  max-height: 36px;
+  background-color: #f2f2f2;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 200ms;
+  transition-property: background-color;
+  color: #252525;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px;
+  width: 100%;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
+}
+
+.textInputWrapper .textInput:focus,
+.textInputWrapper .textInput:active {
+  outline: none;
+}
+
+.textInputWrapper:focus-within .textInput,
+.textInputWrapper .textInput:focus,
+.textInputWrapper .textInput:active {
+  background-color: white;
+}
+
+.textInputWrapper:focus-within .textInput::placeholder {
+  opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by kamehame-ha */ 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 15px;
+  background-color: #181717;
+  outline: 3px #181717 solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  margin-left: 64px;
+  margin-top: 10px;
+}
+
+.button .text {
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.button svg path {
+  transition: 400ms;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: #181717;
+}
+
+.button:hover svg path {
+  fill: #181717;
+}
