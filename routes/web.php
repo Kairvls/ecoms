@@ -6,6 +6,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('login'); // This causes an error if login.blade.php doesn't exist
+});
 Route::get('/adminlogin', function () {
     return view('adminlogin');
 });

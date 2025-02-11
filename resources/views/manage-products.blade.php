@@ -3,61 +3,102 @@
 @section('content')
     
 <div class="p-10">
-        <article class="bg-white px-10 shadow-lg">
-        <section class="text-gray-600 body-font overflow-hidden">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="-my-8 divide-y-2 divide-gray-100">
-      <div class="py-8 flex flex-wrap md:flex-nowrap">
-        <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-          <span class="font-semibold title-font text-gray-700">CATEGORY</span>
-          <span class="mt-1 text-gray-500 text-sm">12 Jan 2025</span>
+        <article class="bg-white px-10 py-10 shadow-lg">
+        <h1 class="flex justify-start text-2xl mb-10 items-center font-semibold head">Manage Products</h1>
+
+        <h1 class="flex justify-start text-2xl mb-10 items-center font-semibold head">Add New Product:</h1>
+
+        
+      <div class="flex grow justify-center space-x-32">
+        <div class="block">
+        <p class="ml-1">Product Name:</p>
+        <div class="textInputWrapper">
+            <input placeholder="Type Here" type="text" class="textInput">
         </div>
-        <div class="md:flex-grow">
-          <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Nails</h2>
-          <p class="leading-relaxed">Nails are essential, durable, and cost-effective for any construction or repair work. They provide strong, long-lasting connections, ensuring safety and stability. Ideal for builders, carpenters, and DIYers, they are affordable, easy to store, and available in bulk. Choose quality nails for reliable, professional results!</p>
-          <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
+        </div>
+
+        <div class="block cursor-pointer">
+        <p class="ml-1">Product Image:</p>
+        <div class="textInputWrapper border shadow-lg cursor-pointer bg-[#f2f2f2]">
+            <input placeholder="Type Here" type="file" class="mt-2 cursor-pointer">
+        </div>
+        </div>
+
+
+      </div>
+
+      <div class="flex grow justify-center mt-10 space-x-2">
+        <div class="block">
+        <p class="ml-1">Category:</p>
+        <select class="textInputWrapper border p-[0.6rem] rounded-sm shadow-lg cursor-pointer mt-0.5 text-sm bg-[#f2f2f2]">
+            <option class="textInput cursor-pointer" value="">Select Category</option>
+            <option class="textInput cursor-pointer" value="">Nails</option>
+            <option class="textInput cursor-pointer" value="">Plumbing</option>
+            <option class="textInput cursor-pointer" value="">Building Materials</option>
+            <option class="textInput cursor-pointer" value="">Handtools</option>
+        </select>
+        </div>
+
+        <div class="block">
+        <p class="ml-1">Price:</p>
+        <div class="textInputWrap">
+            <input placeholder="Input Price" type="number" class="textInputting">
+        </div>
+        </div>
+
+        <div class="block">
+        <p class="ml-1">Quantity:</p>
+        <div class="textInputWrap">
+            <input placeholder="Input Quantity" type="number" class="textInputting">
+        </div>
         </div>
       </div>
-      <div class="py-8 flex flex-wrap md:flex-nowrap">
-        <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-          <span class="font-semibold title-font text-gray-700">CATEGORY</span>
-          <span class="mt-1 text-gray-500 text-sm">31 Jun 2025</span>
+
+      <div class="block ml-16 mt-10 w-full">
+        <p class="">Description:</p>
+        <div class="w-[58.8rem] border border-black mb-5 rounded-lg">
+            <textarea type="text" placeholder="Type Here" name="description" id="description" class="w-full p-1"></textarea>
         </div>
-        <div class="md:flex-grow">
-          <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Chinsaw</h2>
-          <p class="leading-relaxed">A chainsaw is a powerful, fast, and efficient cutting tool essential for woodcutting, tree trimming, and construction. It saves time and effort compared to manual saws, making it ideal for homeowners, landscapers, and professionals. With various sizes and power options, a chainsaw ensures clean, precise cuts for any job. Investing in a quality chainsaw boosts productivity, safety, and durability, making it a must-have for tough cutting tasks.</p>
-          <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
         </div>
-      </div>
-      <div class="py-8 flex flex-wrap md:flex-nowrap">
-        <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-          <span class="font-semibold title-font text-gray-700">CATEGORY</span>
-          <span class="text-sm text-gray-500">2 Feb 2025</span>
-        </div>
-        <div class="md:flex-grow">
-          <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Gloves</h2>
-          <p class="leading-relaxed">Gloves protect hands from injuries, blisters, and chemicals, ensuring safety and better grip for any task. Durable and comfortable, they are essential for construction, gardening, and heavy work. A must-have for professionals and DIYers!</p>
-          <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+      <button class="button">
+          <p class="text">Add Product</p>
+        </button>
+
+
+        <h2 class="flex justify-start text-2xl py-2 mt-16 mb-6 items-center font-semibold head">Existing Products</h2>
+        <table class="w-full mt-4 border justify-center py-10 text-md">
+          <thead>
+          <tr>
+            <th class="p2 border">ID</th>
+            <th class="p2 border">NAME AND IMAGE</th>
+            <th class="p2 border">CATEGORY AND QUANTITY</th>
+            <th class="p2 border">PRICE</th>
+            <th class="p2 border">ACTIONS</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="p2 border justify-center flex">1</td>
+            <td class="p2 border ">Nails</td>
+            <td class="p2 border ">First Testing</td>
+            <td class="p2 border ">09223232</td>
+            <td class="flex p2 space-x-6 border cursor-pointer justify-center">Baicx</td>
+          </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+              <td class="p2 border justify-center flex">2</td>
+              <td class="p2 border ">Chinsaw</td>
+              <td class="p2 border ">Second Testing</td>
+              <td class="p2 border ">09100000</td>
+              <td class="flex p2 border cursor-pointer justify-center">Baicx</td>
+          </tr>
+          </tbody>
+
+          
+        </table>
         </article>
     </div>
 @endsection

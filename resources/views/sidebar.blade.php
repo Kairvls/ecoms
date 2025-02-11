@@ -17,7 +17,7 @@
 <aside>
     
 <div  class="w-72 h-screen bg-white p-5 shadow-xl shadow-black-200/50 rounded-br-xl">
-  <h1 class="flex items-center gap-2 text-[18px] font-semibold mb-10 -mt-2 justify-center text-gray-600"><img src="/images/eeechardwarelogo.jpg" class="h-16 w-24 rounded-full"></img></h1>
+  <h1 class="flex items-center gap-2 text-[18px] font-semibold mb-10 -mt-2 justify-center text-gray-600"><img src="/images/mainlogo.jpg" class="h-16 w-24 rounded-full"></img></h1>
   <ul class="w-full flex flex-col gap-8">
 
   
