@@ -26,14 +26,14 @@
     >
     
       <a
-        href="{{ route('management.category') }}" class="p-16-semibold flex size-full gap-4 p-4 group font-semibold rounded-full bg-cover hover:bg-white hover:shadow-inner focus:bg-gradient-to-r from-yellow-400 to-yellow-500 focus:text-white text-gray-900 transition-all ease-linear"
+        href="{{ route('categories.index') }}" class="p-16-semibold flex size-full gap-4 p-4 group font-semibold rounded-full bg-cover hover:bg-white hover:shadow-inner focus:bg-gradient-to-r from-yellow-400 to-yellow-500 focus:text-white text-gray-900 transition-all ease-linear"
       >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mt-0.3 bi bi-list-task" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
   <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
   <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
 </svg>
-        Management Category
+        Manage Categories
 </a>
     </li>
 
@@ -43,12 +43,12 @@
       class="flex-center cursor-pointer bg-yellow-500 shadow-lg rounded-xl p-16-semibold w-full whitespace-nowrap"
     >
       <a
-      href="{{ route('management.accounts') }}" class="p-16-semibold flex size-full gap-4 p-4 group font-semibold rounded-full bg-cover hover:bg-white hover:shadow-inner focus:bg-gradient-to-r from-yellow-400 to-yellow-500 focus:text-white text-gray-900 transition-all ease-linear"
+      href="{{ route('manage.accounts') }}" class="p-16-semibold flex size-full gap-4 p-4 group font-semibold rounded-full bg-cover hover:bg-white hover:shadow-inner focus:bg-gradient-to-r from-yellow-400 to-yellow-500 focus:text-white text-gray-900 transition-all ease-linear"
       >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 </svg>
-        Management Accounts
+        Manage Accounts
 </a>
     </li>
     <li

@@ -47,6 +47,43 @@ class AuthController extends Controller
             return back()->withErrors(['login' => 'Invalid username or password.']);
         }
 
+
+        public function updateProfile(Request $request)
+            {
+                $user = User::find(Auth::id()); // Get the authenticated user
+
+                // Validate input
+                $request->validate([
+                    'fullname' => 'required|string|max:255',
+                    'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+                    'contact_number' => 'required|string|max:20',
+                    'address' => 'required|string|max:255',
+                    'current_password' => 'nullable|string',
+                    'new_password' => 'nullable|string|min:6|confirmed',
+                ]);
+
+                // Check if the user wants to update the password
+                if ($request->filled('current_password')) {
+                    if (!Hash::check($request->current_password, $user->password)) {
+                        return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+                    }
+
+                    $user->password = Hash::make($request->new_password);
+                }
+
+                // Update user profile details
+                $user->update([
+                    'fullname' => $request->fullname,
+                    'username' => $request->username,
+                    'contact_number' => $request->contact_number,
+                    'address' => $request->address,
+                ]);
+
+                return redirect()->route('userdashboard')->with('success', 'Your password has been updated successfully!');
+            }
+
+        
+
         public function index()
         {
             return view('userdashboard'); // Ensure 'userdashboard.blade.php' exists in resources/views
