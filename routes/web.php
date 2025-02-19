@@ -11,7 +11,10 @@ use App\Http\Controllers\ManageProductsController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderManagementController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\AdminController;
 use Illuminate\View\View;
 
 
@@ -51,17 +54,26 @@ Route::middleware(['web'])->group(function () {
 });
 
 
+
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login']);
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admindashboard', function () {
+        return view('admindashboard');
+    })->name('admindashboard');
+});
+
+
 Route::post('/', [AuthController::class, 'logout'])->name('welcome');
 
 
-Route::get('/adminlogin', function () {
-    return view('adminlogin');
-});
 
 
-Route::get('/admindashboard', function () {
-    return view('admindashboard');
-});
+
+
 
 
 Route::get('/sidebar', function () {
@@ -96,35 +108,37 @@ Route::get('/', [UserController::class, 'index']);
 Route::get('/userdashboard', [UserDashboardController::class, 'index'])->name('userdashboard');
 
 
-Route::get('/userdashboard', [UserDashboardController::class, 'index'])->name('userdashboard');
+
 
 
 Route::get('/manage-accounts', [ManageController::class, 'manageAccounts'])->name('manage.accounts');
 Route::post('/manage-accounts', [ManageController::class, 'store'])->name('store');
 
-Route::get('/userdashboard/cart', [CartController::class, 'index'])->name('cart.index');
 
-// Add to cart from user dashboard
-Route::post('/userdashboard/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/update', [CartController::class, 'add'])->name('cart.update');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
-// Show cart page
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::patch('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
-// Remove item from cart
-Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-
-// Checkout process
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
 
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::get('/my-orders', [OrderController::class, 'index'])->name('my.orders');
+Route::post('/my-orders/remove/{id}', [OrderController::class, 'remove'])->name('my.orders.remove');
+Route::get('/my-orders/{status?}', [OrderController::class, 'index'])->name('my-orders');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index'); // View all orders
-    Route::post('/orders/store', [OrdersController::class, 'store'])->name('orders.store'); // Place an order
-    Route::get('/orders/{id}', [OrdersController::class, 'show'])->name('orders.show'); // View a single order
-});
+Route::get('/orders', [OrderManagementController::class, 'index'])->name('orders.index');
+Route::post('/orders/update/{id}', [OrderManagementController::class, 'updateStatus'])->name('orders.update');
+
+
+Route::get('/cartfirst', function () {
+    return view('cartfirst');
+})->name('cartfirst');
 
 
 Route::get('/modal', function () {
@@ -134,6 +148,14 @@ Route::get('/modal', function () {
 Route::get('/order-management', function () {
     return view('order-management');
 })->name('order.management');
+
+Route::get('/userdash', function () {
+    return view('userdash');
+})->name('userdash');
+
+
+Route::get('/sales-overview', [ChartController::class, 'showChart'])->name('sales.overview');
+Route::get('/sales-data', [ChartController::class, 'getSalesOverview'])->name('sales.data');
 
 
 

@@ -99,13 +99,18 @@
       <input type="radio">
       <label>Remember me </label>
       </div>
-      <span class="span ">Forgot password?</span>
+      
     </div>
-    <button type="submit" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ʀᴇɢɪꜱᴛᴇʀ</button>
+    <button type="submit" onclick="showAlert()" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ʀᴇɢɪꜱᴛᴇʀ</button>
     <p class="p">Already have an Account? <a href="/login"><span class="span">Log In</span></a>
 
     
 </form>
 </div>
+<script>
+  function showAlert() {
+    alert('Successfully Registered.');
+  }
+</script>
 </body>
 </html>

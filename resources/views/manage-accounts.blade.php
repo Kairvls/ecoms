@@ -53,11 +53,11 @@
         <table class="w-full mt-4 border justify-center py-10 text-md">
           <thead>
           <tr>
-            <th class="p2 border">ID</th>
-            <th class="p2 border">FULLNAME</th>
-            <th class="p2 border">USERNAME</th>
-            <th class="p2 border">CONTACT NUMBER</th>
-            <th class="p2 border">ADDRESS</th>
+            <th class="p2 border bg-yellow-500">ID</th>
+            <th class="p2 border bg-yellow-500">FULLNAME</th>
+            <th class="p2 border bg-yellow-500">USERNAME</th>
+            <th class="p2 border bg-yellow-500">CONTACT NUMBER</th>
+            <th class="p2 border bg-yellow-500">ADDRESS</th>
           </tr>
           </thead>
           <tbody>

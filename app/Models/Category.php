@@ -29,5 +29,9 @@ class Category extends Model
     return $this->belongsTo(Product::class, 'product_id');
 }
 
+public function sales()
+{
+    return $this->belongsTo(Sales::class, 'sales_id');
+}
     
 }

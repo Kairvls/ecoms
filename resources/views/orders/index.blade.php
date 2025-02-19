@@ -28,6 +28,7 @@
                     </thead>
                     <tbody>
                         @foreach($orders as $order)
+                        @csrf
                             <tr class="border-b">
                                 <td class="py-2">#{{ $order->id }}</td>
                                 <td class="py-2">{{ $order->created_at->format('M d, Y') }}</td>

@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Sales;
 
 class CategoryController extends Controller
 {
     public function index()
     {
         $categories = Category::all();
-        return view('manage-categories', compact('categories'));
+        $orders = Sales::with('details.product')->get();
+        return view('manage-categories', compact('categories', 'orders'));
     }
 
     public function store(Request $request)

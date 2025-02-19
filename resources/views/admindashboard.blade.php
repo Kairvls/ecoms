@@ -7,6 +7,7 @@
     <title>My Laravel App</title>
     
     @vite('resources/css/app.css')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="dashboard flex overflow-y-scroll">
@@ -21,6 +22,8 @@
   </div>
 </header>
     <p class="ml-10 mt-4 absolute">Manage by Admin...</p>
+
+
     <div class="content ">
         @yield('content') {{-- This will load the selected page content --}}
     </div>

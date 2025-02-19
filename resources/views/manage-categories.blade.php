@@ -81,10 +81,10 @@
         <table class="w-full mt-4 border justify-center py-10 text-md">
           <thead>
           <tr>
-            <th class="p2 border">ID</th>
-            <th class="p2 border">NAME</th>
-            <th class="p2 border">DESCRIPTION</th>
-            <th class="p2 border">ACTIONS</th>
+            <th class="p2 border bg-yellow-500">ID</th>
+            <th class="p2 border bg-yellow-500">NAME</th>
+            <th class="p2 border bg-yellow-500">DESCRIPTION</th>
+            <th class="p2 border bg-yellow-500">ACTIONS</th>
           </tr>
           </thead>
           

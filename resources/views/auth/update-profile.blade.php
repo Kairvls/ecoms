@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite('resources/css/register.css')
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-</head>
-<body>
+@extends('userdash')
+
+@section('content')
+@vite('resources/css/updateprofile.css')
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @if (session('success'))
     <script>
         alert("{{ session('success') }}");
@@ -23,7 +18,7 @@
       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
     </svg></a>
 
-    <h1 class="flex justify-center font-semibold -mt-4 mb-4 text-3xl">ʀᴇɢɪꜱᴛᴇʀ</h1>
+    <h1 class="flex justify-center font-semibold -mt-4 mb-4 text-3xl">ᴇᴅɪᴛ ʏᴏᴜʀ ᴘʀᴏꜰɪʟᴇ</h1>
     <div class="flex grow justify-center gap-10">
         <div class="block grow">
     
@@ -95,7 +90,7 @@
       </div>
     
     
-    <button type="submit" id="updateProfile" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ꜱᴀᴠᴇ ᴄʜᴀɴɢᴇꜱ</button>
+    <button type="submit" id="updateProfile" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-400 hover:bg-yellow-500">ꜱᴀᴠᴇ ᴄʜᴀɴɢᴇꜱ</button>
     
 
     
@@ -113,5 +108,4 @@
         this.submit();
     };
 </script>
-</body>
-</html>
+@endsection

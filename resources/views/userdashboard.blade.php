@@ -7,6 +7,8 @@
     
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
 </head>
 <body>
@@ -44,7 +46,7 @@
         </div>
         
         <div className="animate-blinkssssss relative group hover:text-white">
-        <a href="{{ route('cart.index') }}" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-cart-check" viewBox="0 0 16 16">
+        <a href="{{ route('cart') }}" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-cart-check" viewBox="0 0 16 16">
         <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
         <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
         </svg><p class="hover:text-gray-600">ᴍʏ ᴄᴀʀᴛ</p></span>
@@ -53,7 +55,7 @@
         </div>
 
         <div className="animate-blinksssssss relative group hover:text-white">
-        <a href="/sub_pages/services" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-basket" viewBox="0 0 16 16">
+        <a href="{{ route('my.orders') }}" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-basket" viewBox="0 0 16 16">
         <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9zM1 7v1h14V7zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5"/>
         </svg><p class="hover:text-gray-600">ᴍʏ ᴏʀᴅᴇʀꜱ</p></span>
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gray-400 transition-all group-hover:w-full"></span>
@@ -135,128 +137,71 @@
    
     <h1 class="flex justify-center text-4xl mb-12 -mt-10 items-center drop-shadow-xl text-black font-semibold heads">ʟᴀᴛᴇꜱᴛ ᴘʀᴏᴅᴜᴄᴛꜱ</h1>
     
-    <div class="px-20 -mt-10 py-4 mx-auto">
-    
+    <div class="px-20 -mt-10 py-4 mx-auto cursor-pointer">
     <div class="flex flex-wrap -m-4">
-    @foreach($categories as $category)
-    @foreach ($products->where('category_id', $category->id) as $product)
-    <div class="p-4 md:w-1/4">
-        <div class="h-full border-2 shadow-xl border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-          <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
-          <div class="p-6">
-            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
-            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $product->name }}</h1>
-            <p class="leading-relaxed mb-3">{{ $product->description }}</p>
-            <div class="flex items-center flex-wrap ">
-            <div x-data="{ open: false }">
-              <button @click="open = true" class="text-indigo-500 border border-yellow-500 shadow-lg py-1 px-4 rounded-sm bg-transparent inline-flex items-center md:mb-2 lg:mb-0">Buy
-                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </button>
-
-
-              <section x-show="open" class="text-gray-600 px-[20rem] hv-[10rem] justify-center flex items-center fixed inset-0 z-10 body-font overflow-hidden">
-                      <div class="container bg-white border border-gray-500 rounded-md shadow-lg px-5 py-4 mx-auto">
-                      
-                      
-                        <div class="mx-auto flex flex-wrap">
-                          <img alt="ecommerce" class="lg:w-1/2 w-full border-x-2 border-solid border-black lg:h-[19rem] object-cover object-center rounded" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
-                          <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <button @click="open = false" class="absolute justify-end items-center -mt-8 ml-[23.5rem] flex "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="hover:bg-gray-600 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
-                              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
-                              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-                              </svg></button>
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->name }}</h1>
-                            
-                            <p class="leading-relaxed">{{ $product->description }}</p>
-                            <p class="leading-relaxed">Stock: {{ $product->counter }}</p>
-                            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                              
-                            <div x-data="{ quantity: 1, price: {{ $product->price }} }" class="flex flex-col space-y-2">
-                              <div class="flex items-center space-x-2">
-                                  <!-- Decrease Button -->
-                                  <button 
-                                      @click="if (quantity > 1) quantity--" 
-                                      class="bg-gray-300 text-gray-700 px-3 py-1 rounded">
-                                      -
-                                  </button>
-
-                                  <!-- Quantity Input (Hidden for Form Submission) -->
-                                  <input type="hidden" name="quantity" x-model="quantity">
-
-                                  <!-- Quantity Input -->
-                                  <input 
-                                      type="number" 
-                                      x-model="quantity" 
-                                      min="1" max="50"
-                                      class="w-12 text-center border border-gray-300 rounded"
-                                      readonly
-                                  >
-
-                                  <!-- Increase Button -->
-                                  <button 
-                                      @click="if (quantity < 50) quantity++" 
-                                      class="bg-gray-300 text-gray-700 px-3 py-1 rounded">
-                                      +
-                                  </button>
-                              </div>
-
-                              <!-- Total Price Display -->
-                              <span class="text-lg font-bold">Total: ₱<span x-text="(quantity * price).toFixed(2)"></span></span>
-                              
-                              </div>
-                          
-
-
-                            </div>
-                            <div class="flex items-center">
-                            <span class="title-font font-medium text-xl text-gray-900 mr-8">₱{{ number_format($product->price, 2) }}</span>
-                            <div class="space-x-2 flex">
-                            <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                              @csrf
-                              <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}" class="form-control">
-                            <button type="submit" class="btn btn-primary flex text-black font-semibold shadow-lg bg-gray-200 hover:bg-gray-300 py-2 px-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-cart-check" viewBox="0 0 16 16">
-                              <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
-                              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                            </svg> Add to cart</button>
-                            </form>
-                            <a href="{{ route('checkout.index') }}" class="flex text-white shadow-lg font-semibold bg-red-500 hover:bg-red-600 py-2 px-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-bag-check" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-                              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                            </svg> Checkout</a>
-                            </div>
-                              
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div>
-</section>
-
-
-              </div>
-
-
-
-
-              <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                @foreach($categories as $category)
+                    @foreach ($products->where('category_id', $category->id) as $product)
+                        <div class="swiper-slide p-4 md:w-1/4">
+                            <div class="h-full border-2 shadow-xl border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                                <img class="lg:h-48 md:h-36 w-full object-cover object-center"
+                                     src="{{ asset('storage/' . $product->photo) }}"
+                                     alt="{{ $product->name }}">
+                                <div class="p-6">
+                                    <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                                        BRAND NAME
+                                    </h2>
+                                    <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+                                        {{ $product->name }}
+                                    </h1>
+                                    <p class="leading-relaxed mb-3">{{ $product->description }}</p>
+                                    <div class="flex items-center flex-wrap">
+                                        <div x-data="{ open: false }">
+                                            <button @click="open = true"
+                                                    class="text-indigo-500 border border-yellow-500 shadow-xl py-1 px-4 rounded-sm bg-transparent hover:bg-gray-100 inline-flex items-center md:mb-2 lg:mb-0">
+                                                View
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ml-2 bi bi-bag-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div x-show="open" class="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
+                                                <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                                                    <button @click="open = false"
+                                                            class="absolute top-2 right-2 text-gray-200 hover:text-black">
+                                                        ✖
+                                                    </button>
+                                                    <img class="w-full h-48 object-cover rounded-md"
+                                                         src="{{ asset('storage/' . $product->photo) }}"
+                                                         alt="{{ $product->name }}">
+                                                    <h2 class="text-lg font-bold text-gray-900">{{ $product->name }}</h2>
+                                                    <p class="text-gray-500">{{ $product->description }}</p>
+                                                    <span class="text-lg font-bold text-red-500">₱{{ number_format($product->price, 2) }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-md pr-3 py-1 border-r-2 border-gray-200">
+                                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
                 </svg>₱{{ number_format($product->price, 2) }}
-              </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endforeach
             </div>
-          </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
-      </div>
-      @endforeach
-      @endforeach
-      </div>
-      
-      </div>
+    </div>
+</div>
+
       
       
 
@@ -278,19 +223,19 @@
     <div class="h-full border-2 shadow-xl border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
       <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
       <div class="p-6">
-        <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+        <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">BRAN NAME</h2>
         <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $product->name }}</h1>
         <p class="leading-relaxed mb-3">{{ $product->description }}</p>
         <div class="flex items-center flex-wrap ">
         <div x-data="{ open: false }">
-          <button @click="open = true" class="text-indigo-500 border border-yellow-500 shadow-lg py-1 px-4 rounded-sm bg-transparent inline-flex items-center md:mb-2 lg:mb-0">Buy
-            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
+          <button @click="open = true" class="text-indigo-500 border border-yellow-500 shadow-lg py-1 px-4 hover:bg-gray-100 rounded-sm bg-transparent inline-flex items-center md:mb-2 lg:mb-0">Buy
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ml-2 bi bi-bag-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg>
           </button>
 
-          <section x-show="open" class="text-gray-600 px-[20rem] hv-[10rem] justify-center flex items-center fixed inset-0 z-10 body-font overflow-hidden">
+          <section x-show="open" class="text-gray-600 px-[19rem] hv-[10rem] justify-center flex items-center fixed inset-0 z-10 body-font overflow-hidden">
                       <div class="container bg-white border border-gray-500 rounded-md shadow-lg px-5 py-4 mx-auto">
                       
                       
@@ -306,53 +251,38 @@
                             
                             <p class="leading-relaxed">{{ $product->description }}</p>
                             <p class="leading-relaxed">Stock: {{ $product->counter }}</p>
+
+                            
                             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                              
-                            <div x-data="{ quantity: 1, price: {{ $product->price }} }" class="flex flex-col space-y-2">
-                              <div class="flex items-center space-x-2">
-                                  <!-- Decrease Button -->
-                                  <button 
-                                      @click="if (quantity > 1) quantity--" 
-                                      class="bg-gray-300 text-gray-700 px-3 py-1 rounded">
-                                      -
-                                  </button>
-
-                                  <!-- Quantity Input -->
-                                  <input 
-                                      type="number" 
-                                      x-model="quantity" 
-                                      min="1" max="50"
-                                      class="w-12 text-center border border-gray-300 rounded"
-                                      readonly
-                                  >
-
-                                  <!-- Increase Button -->
-                                  <button 
-                                      @click="if (quantity < 50) quantity++" 
-                                      class="bg-gray-300 text-gray-700 px-3 py-1 rounded">
-                                      +
-                                  </button>
-                              </div>
-
-                              <!-- Total Price Display -->
-                              <span class="text-lg font-bold">Total: ₱<span x-text="(quantity * price).toFixed(2)"></span></span>
-                              
-                              </div>
+                            <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                            @csrf
+                            Input Quantity:
+                            <input class="border border-black w-16 px-2" type="number" name="quantity" value="1" min="1" required>
+                            Pc(s)
                           
-
+                            
 
                             </div>
                             <div class="flex items-center">
                             <span class="title-font font-medium text-xl text-gray-900 mr-8">₱{{ number_format($product->price, 2) }}</span>
                             <div class="space-x-2 flex">
-                            <button class="flex text-black font-semibold shadow-lg bg-gray-200 hover:bg-gray-300 py-2 px-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-cart-check" viewBox="0 0 16 16">
-                              <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
-                              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                            </svg> Add to cart</button>
-                            <button class="flex text-white shadow-lg font-semibold bg-red-500 hover:bg-red-600 py-2 px-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-bag-check" viewBox="0 0 16 16">
+                            
+                              <input type="hidden" name="product_id" value="{{ $product->id }}">
+                              <input type="hidden" name="product_name" value="{{ $product->name }}">
+                              <input type="hidden" name="product_price" value="{{ $product->price }}">
+                              
+                              <button type="submit" class="btn btn-primary flex text-black font-semibold shadow-lg bg-gray-200 hover:bg-gray-300 py-2 px-4">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-cart-check" viewBox="0 0 16 16">
+                                      <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+                                      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                  </svg> 
+                                  Add to cart
+                              </button>
+                          </form>
+                            <a  href="{{ route('cartfirst') }}" class="flex text-white shadow-lg font-semibold bg-red-500 hover:bg-red-600 py-2 px-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-bag-check" viewBox="0 0 16 16">
                               <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
                               <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                            </svg> Checkout</button>
+                            </svg> Checkout</a>
                             </div>
                               
                             </div>
@@ -363,15 +293,14 @@
 </section>
 
 
+
+
           </div>
 
 
 
           <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>₱{{ number_format($product->price, 2) }}
+                ₱{{ number_format($product->price, 2) }}
               </span>
         </div>
       </div>
@@ -388,7 +317,7 @@
   <div class="container px-5 py-20 -mb-6 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
       <a class="flex title-font font-medium ml-8 items-center md:justify-start justify-center text-gray-900">
-      <img src="/images/eeeclogo.png" class="ml-2 rounded-full w-10 h-10 object-cover "/>
+      <img src="/images/mainlogo.jpg" class="ml-2 rounded-full w-10 h-10 object-cover "/>
         <span class="ml-3 text-xl font-mono text-white">EEECHARDWARE</span>
       </a>
       <p class="mt-2 text-sm ml-10 text-gray-500">for efficient sales and inventory management.</p>
@@ -398,7 +327,7 @@
         <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">ABOUT US</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400 cursor-pointer hover:text-gray-800">EEECHARDWARE offers a smart Hardware Business System to simplify inventory, sales, and transactions—boosting efficiency and growth.</a>
+            <a class="text-gray-400  hover:text-gray-800">EEECHARDWARE offers a smart Hardware Business System to simplify inventory, sales, and transactions—boosting efficiency and growth.</a>
           </li>
           
         </nav>
@@ -409,7 +338,7 @@
 </svg> OUR LOCATION</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400 cursor-pointer hover:text-gray-800"> 1209 Kamyas Street Sitio Gitna, Caybiga Caloocan City.</a>
+            <a class="text-gray-400  hover:text-gray-800"> 1209 Kamyas Street Sitio Gitna, Caybiga Caloocan City.</a>
           </li>
           
         </nav>
@@ -420,7 +349,7 @@
 </svg> CONTACT NUMBER</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400 cursor-pointer hover:text-gray-800"> 09104713535</a>
+            <a class="text-gray-400  hover:text-gray-800"> +63 693 698 569</a>
           </li>
           
         </nav>
@@ -431,13 +360,13 @@
 </svg> YOUR ACCOUNT & MORE</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400 cursor-pointer flex hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-2 bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <a href="/register" class="text-gray-400 cursor-pointer flex hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-2 bi bi-person-plus-fill" viewBox="0 0 16 16">
   <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
   <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
 </svg> Create an account</a>
           </li>
           <li>
-            <a class="text-gray-400 cursor-pointer flex hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="-ml-1 mr-3 bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <a href="/login" class="text-gray-400 cursor-pointer flex hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="-ml-1 mr-3 bi bi-box-arrow-in-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
   <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
 </svg> Login to your account</a>
@@ -530,6 +459,57 @@
             if (quantity > 1) {
                 quantityInput.value = quantity - 1;
             }
+        });
+    });
+</script>
+
+<script>
+    $('#addToCartForm').submit(function(e) {
+        e.preventDefault();
+        
+        let quantity = $('#quantity').val();
+        let product_id = $('input[name="product_id"]').val();
+        
+        $.ajax({
+            url: "{{ route('cart.add') }}",
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                product_id: product_id,
+                quantity: quantity,
+            },
+            success: function(response) {
+                if(response.success) {
+                    alert('Product added to cart');
+                    // Optionally update cart details or show a notification
+                } else {
+                    alert('Not enough stock');
+                }
+            },
+            error: function() {
+                alert('Something went wrong');
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        new Swiper(".mySwiper", {
+            slidesPerView: 3,   // Adjust how many products are visible
+            spaceBetween: 20,   // Spacing between slides
+            loop: true,         // Infinite loop scrolling
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            },
         });
     });
 </script>
