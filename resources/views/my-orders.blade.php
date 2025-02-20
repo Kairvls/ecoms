@@ -25,10 +25,10 @@
         <div class="card">
         <div class="card-header text-center">
             <h2 class="mb-4 text-[30px] font-semibold text-gray-700 bg-white bg-opacity-50">ᴍʏ ᴏʀᴅᴇʀ(ꜱ)</h2>
-            <ul class="nav nav-tabs justify-content-center flex space-x-[7.8rem] items-center grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
+            <ul class="nav nav-tabs justify-content-center xl:gap-x-[7.9rem] md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
                 @foreach(['pending', 'confirmed', 'to_ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
-                    <li class="nav-item">
-                        <a onclick="showColor()" class="nav-link {{ $status == $tab ? 'active' : '' }}" 
+                    <li class="nav-item py-1 font-thin">
+                        <a onclick="showColor()" class="md:mb-2 nav-link {{ $status == $tab ? 'active' : '' }}" 
                            href="{{ route('my.orders', ['status' => $tab]) }}">
                            {{ ucfirst($tab) }}
                         </a>
@@ -42,14 +42,15 @@
         
             <div class="row mt-3">
             
-                        <div class="col-md-4 flex flex-wrap gap-1">
+                        <div class="col-md-4 flex flex-wrap gap-y-4 gap-x-1">
                         @foreach ($orders as $order)
         @foreach ($order->details as $detail)
-                            <div class="card bg-white py-4 rounded-md shadow-lg px-4 md:w-1/4 xl:w-[27rem]">
-                            <div class="flex space-x-4">
+                            <div class="card bg-white py-4 rounded-md shadow-lg px-4 md:h-1/4 md:w-1/4 xl:w-[27rem]">
+                            <div class="md:flex  md:space-y-2 md:space-x-4">
+                            
+                                <div class="card-body sm:block">
                                 
-                                <div class="card-body">
-                                    
+                                
                                     <h5 class="font-semibold text-lg">Order Name: {{ $detail->product->name }}</h5>
                                     <p class="text-sm mt-2">Full Name: {{ Auth::user()->fullname }}</p>
                                     <p class="text-sm">Address: {{ Auth::user()->address }}</p>
@@ -71,8 +72,9 @@
                                         <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="status" value="return" class="bg-yellow-500 px-3 py-1 border rounded-md shadow-xl flex hover:bg-yellow-600 hover:text-white">
-                                            <button type="submit" onclick="showReturn()" class="btn btn-warning mt-4 bg-yellow-500 px-3 py-1 border rounded-md shadow-xl flex hover:bg-yellow-600 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mt-[3px] mr-2 bi bi-arrow-return-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+                                            <button type="submit" onclick="showReturn()" class="btn btn-warning mt-4 bg-yellow-500 px-3 py-1 border rounded-md shadow-xl flex hover:bg-yellow-600 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mt-[1px] mr-1 bi bi-arrow-repeat" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
 </svg> Return</button>
                                         </form>
                                     @endif
@@ -84,7 +86,7 @@
                                         <button type="submit" onclick="showCancel()" class="bg-yellow-500 px-3 py-1 border rounded-md shadow-xl flex hover:bg-yellow-600 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-x" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708"/>
   <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-</svg><p class="ml-2">Remove</p></button>
+</svg><p class=""></p></button>
                                         
                                     </form>
         @endif
@@ -111,8 +113,10 @@
                                     </form>
         @endif
         
+        
         </div>
-        <img src="{{ asset('storage/' . $detail->product->photo) }}" class="object-cover card-img-top md:w-[10rem] h-[10rem]" alt="Product">
+        <img src="{{ asset('storage/' . $detail->product->photo) }}" class="object-cover md:max-w-[10rem] rigth-0 md:max-h-[12rem] md:min-w-[2rem] md:min-h-[2rem] card-img-top " alt="Product">
+        
                                 </div>
                             </div>
                             @endforeach
@@ -123,10 +127,17 @@
         </div>
     </div>
         </div>
+
+
+
+
+        
     </article>
 
     @else
-    
+    <div v-if="loading" class="text-center my-4">
+        <p class="text-white text-lg ">Loading orders...</p>
+    </div>
 
     <article class="px-10 py-10 shadow-xl w-full rounded-lg bg-opacity-50 h-screen bg-cover bg-center bg-white bg-no-repeat bg-fixed" >
         <a href="/userdashboard" class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="hover:bg-gray-600 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
@@ -138,9 +149,9 @@
         <div class="card">
         <div class="card-header text-center">
             <h2 class="mb-4 text-[30px] font-semibold text-gray-700 bg-white bg-opacity-50">ᴍʏ ᴏʀᴅᴇʀ(ꜱ)</h2>
-            <ul class="nav nav-tabs justify-content-center flex space-x-[7.8rem] items-center grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
+            <ul class="nav nav-tabs xl:gap-x-[7.9rem] justify-content-center md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
                 @foreach(['pending', 'confirmed', 'to_ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
-                    <li class="nav-item">
+                    <li class="nav-item py-1">
                         <a class="nav-link {{ $status == $tab ? 'active' : '' }}" 
                            href="{{ route('my.orders', ['status' => $tab]) }}">
                            {{ ucfirst($tab) }}

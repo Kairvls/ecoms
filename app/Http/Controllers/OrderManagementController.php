@@ -26,4 +26,14 @@ class OrderManagementController extends Controller
         return redirect()->back()->with('success', 'Order status updated successfully');
     }
     
+    public function showOrderDetails($pay_id)
+{
+    $order = Sales::with(['details.product'])->where('pay_id', $pay_id)->first(); // Fetch order with related details
+
+    if (!$order) {
+        return redirect('/orders')->with('error', 'Order not found!');
+    }
+
+    return view('ordersid', compact('order'));
+}
 }

@@ -46,7 +46,7 @@
       </div>
       
     </div>
-    <button type="submit" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ʟᴏɢɪɴ</button>
+    <button type="submit" onclick="showAlert()" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ʟᴏɢɪɴ</button>
     <p class="p">Don't have an account? <a href="/register"><span class="span">Register</span></a>
 
     

@@ -15,6 +15,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderIdManagementController;
 use Illuminate\View\View;
 
 
@@ -124,7 +125,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::patch('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
+Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 
 
 Route::get('/my-orders', [OrderController::class, 'index'])->name('my.orders');
@@ -134,6 +135,9 @@ Route::get('/my-orders/{status?}', [OrderController::class, 'index'])->name('my-
 
 Route::get('/orders', [OrderManagementController::class, 'index'])->name('orders.index');
 Route::post('/orders/update/{id}', [OrderManagementController::class, 'updateStatus'])->name('orders.update');
+
+Route::get('/orders/{pay_id}', [OrderManagementController::class, 'showOrderDetails'])->name('orders.details');
+
 
 
 Route::get('/cartfirst', function () {

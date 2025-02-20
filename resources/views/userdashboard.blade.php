@@ -12,68 +12,46 @@
 
 </head>
 <body>
-<div class="overflow-y-scroll bg-white h-screen">
-    <header class="text-gray-600 body-font bg-yellow-500 ">
-  <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
+<div class="overflow-y-scroll bg-[#19191C] h-screen">
+<header class="text-gray-600 body-font w-full bg-yellow-500">
+  <div class="container mx-auto flex flex-wrap py-2 px-4 gap-2 flex-col md:flex-row items-center">
     <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <img src="/images/mainlogo.jpg" class="ml-2 rounded-full w-14 h-14 object-cover "/>
-      
-    </a>
+    <img src="/images/mainlogo.jpg" class="ml-2 rounded-full w-14 h-14 object-cover "/>
     <nav class="md:mr-auto md:ml-4 md:py-5  md:pl-4 md:border-l md:border-black	flex flex-wrap items-center text-base justify-center">
     
     </nav>
-    @if(session()->has('username'))
+      <span class="ml-3 text-md">@if(session()->has('username'))
     <p class="text-md text-black font-sans">Welcome, {{ session('username') }}!</p>
-    @endif
-    <div class="space-x-5 px-4 flex grow">
-    <div class="flex justify-end grow space-x-10 px-4">
-
-    <div className="animate-blinks relative group hover:text-white">
-            <a href="{{ route('update.profile') }}" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="mr-1 bi bi-person" viewBox="0 0 16 16">
+    @endif</span>
+    </a>
+    
+    <nav class="md:ml-auto flex flex-wrap items-center gap-4 text-base justify-center">
+      <a href="{{ route('update.profile') }}" class="mr-5 text-black flex"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="mr-1 bi bi-person" viewBox="0 0 16 16">
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-            </svg><p class="hover:text-gray-600">ᴍʏ ᴘʀᴏꜰɪʟᴇ</p></span>
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
-            </a>
-        </div>
-
-
-        <div className="animate-blinksssss relative group hover:text-white">
-        <a href="/userdashboard" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="mr-2 mt-[3px] bi bi-shop" viewBox="0 0 16 16">
-        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
-        </svg><p class="hover:text-gray-600">ᴠɪᴇᴡ ᴘʀᴏᴅᴜᴄᴛꜱ</p></span>
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gray-400 transition-all group-hover:w-full"></span>
-            </a>
-        </div>
-        
-        <div className="animate-blinkssssss relative group hover:text-white">
-        <a href="{{ route('cart') }}" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-cart-check" viewBox="0 0 16 16">
+            </svg> <p class="hover:text-white">ᴍʏ ᴘʀᴏꜰɪʟᴇ</p> </a>
+      <a href="/userdashboard" class="mr-5 text-black flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-cart-check" viewBox="0 0 16 16">
         <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
         <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-        </svg><p class="hover:text-gray-600">ᴍʏ ᴄᴀʀᴛ</p></span>
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gray-400 transition-all group-hover:w-full"></span>
-            </a>
-        </div>
-
-        <div className="animate-blinksssssss relative group hover:text-white">
-        <a href="{{ route('my.orders') }}" ><span class="flex text-lg font-sans text-black"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-basket" viewBox="0 0 16 16">
+        </svg> <p class="hover:text-white">ᴠɪᴇᴡ ᴘʀᴏᴅᴜᴄᴛꜱ</p> </a>
+      <a href="{{ route('cart') }}" class="mr-5 text-black flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-cart-check" viewBox="0 0 16 16">
+        <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+        </svg><p class="hover:text-white">ᴍʏ ᴄᴀʀᴛ</p> </a>
+      <a href="{{ route('my.orders') }}" class="mr-5 text-black flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mr-2 bi bi-basket" viewBox="0 0 16 16">
         <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9zM1 7v1h14V7zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5"/>
-        </svg><p class="hover:text-gray-600">ᴍʏ ᴏʀᴅᴇʀꜱ</p></span>
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gray-400 transition-all group-hover:w-full"></span>
-            </a>
-        </div>
-    </div>
-    </div>
+        </svg> <p class="hover:text-white">ᴍʏ ᴏʀᴅᴇʀꜱ</p></a>
+    </nav>
+    
     <form action="{{ route('welcome') }}" method="POST">
     @csrf
-        <button type="submit" class="inline-flex items-center bg-transparent border border-black mr-4 shadow-xl py-1 px-3 focus:outline-none hover:bg-gray-800 hover:text-white rounded text-red-700 font-semibold -mt-4 md:mt-0">Logout
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right ml-2" viewBox="0 0 16 16">
+    <button class="inline-flex items-center bg-red-600 border py-1 px-4 mr-2  focus:outline-none text-white hover:bg-red-700 shadow-xl border-yellow-600 rounded text-base mt-4 md:mt-0">Logout
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right ml-2" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
         </svg>
-        </button> 
-        </form>
+    </button>
+    </form>
   </div>
 </header>
-
 <section class="snap-start">
             <main style="background-image: url('http://127.0.0.1:8000/images/hardwareequipment.jpg');"
             class="sm:block sm:justify-center bg-eeec bg-cover bg-center sm:items-center">
@@ -115,14 +93,14 @@
             <img src="/images/mainlogo.jpg" class="rounded-full"/>
           </div>
           <div class="flex flex-col items-center text-center justify-center">
-            <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">EEEC HARDWARE</h2>
+            <h2 class="font-medium title-font mt-4 text-gray-300 text-lg">ᴇᴇᴇᴄ ʜᴀʀᴅᴡᴀʀᴇ</h2>
             <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
-            <p class="text-base">The streamlines inventory, sales, and customer management for efficient operations.</p>
+            <p class="text-gray-300 text-md">The streamlines inventory, sales, and customer management for efficient operations.</p>
           </div>
         </div>
         <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-          <p class="leading-relaxed text-lg mb-4">EEECHardware is your trusted partner for high-quality tools, building materials, and hardware essentials at competitive prices. We are committed to providing reliable products, exclusive deals, and exceptional customer service to ensure a seamless shopping experience. Whether you're a contractor, DIY enthusiast, or business owner, we have everything you need to complete your projects with confidence and efficiency. Shop with us today and experience the best in hardware solutions!</p>
-          <a class="text-indigo-500 inline-flex items-center">Learn More
+          <p class="leading-relaxed text-md mb-4 text-gray-300">EEECHardware is your trusted partner for high-quality tools, building materials, and hardware essentials at competitive prices. We are committed to providing reliable products, exclusive deals, and exceptional customer service to ensure a seamless shopping experience. Whether you're a contractor, DIY enthusiast, or business owner, we have everything you need to complete your projects with confidence and efficiency. Shop with us today and experience the best in hardware solutions!</p>
+          <a href="https://builtory.my/builtory-image/Q9bvO36EO/industrial-supplies-and-hardware.jpg" class="text-indigo-500 inline-flex items-center">Learn More
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
@@ -135,9 +113,9 @@
 
 
    
-    <h1 class="flex justify-center text-4xl mb-12 -mt-10 items-center drop-shadow-xl text-black font-semibold heads">ʟᴀᴛᴇꜱᴛ ᴘʀᴏᴅᴜᴄᴛꜱ</h1>
+    <h1 class="flex justify-center text-4xl mb-12 -mt-10 items-center drop-shadow-xl text-white font-semibold heads">ʟᴀᴛᴇꜱᴛ ᴘʀᴏᴅᴜᴄᴛꜱ</h1>
     
-    <div class="px-20 -mt-10 py-4 mx-auto cursor-pointer">
+    <div class="px-32 -mt-6 py-10 mx-auto bg-[#19191C] shadow-lg shadow-yellow-500 cursor-pointer">
     <div class="flex flex-wrap -m-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -152,19 +130,16 @@
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         BRAND NAME
                                     </h2>
-                                    <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+                                    <h1 class="title-font text-lg font-medium text-gray-300 mb-3">
                                         {{ $product->name }}
                                     </h1>
-                                    <p class="leading-relaxed mb-3">{{ $product->description }}</p>
+                                    <p class="leading-relaxed mb-3 text-white">{{ $product->description }}</p>
                                     <div class="flex items-center flex-wrap">
                                         <div x-data="{ open: false }">
                                             <button @click="open = true"
                                                     class="text-indigo-500 border border-yellow-500 shadow-xl py-1 px-4 rounded-sm bg-transparent hover:bg-gray-100 inline-flex items-center md:mb-2 lg:mb-0">
                                                 View
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ml-2 bi bi-bag-check" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-</svg>
+                                                ➢
                                             </button>
                                             <!-- Modal -->
                                             <div x-show="open" class="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
@@ -211,11 +186,23 @@
 
 
 
-      <h1 class="flex justify-center text-4xl mb-10 mt-28 items-center drop-shadow-xl text-black font-semibold heads">ᴘʀᴏᴅᴜᴄᴛꜱ ʙʏ ᴄᴀᴛᴇɢᴏʀɪᴇꜱ</h1>
+<h1 class="flex justify-center text-4xl mt-28 items-center drop-shadow-xl text-white font-semibold heads z-0">ᴘʀᴏᴅᴜᴄᴛꜱ ʙʏ ᴄᴀᴛᴇɢᴏʀɪᴇꜱ</h1>
+
+<section class="text-gray-600 body-font">
+  <div class="container px-32 py-24 -mb-32 mx-auto flex flex-wrap">
+    <h2 class="sm:text-3xl text-2xl text-white font-medium title-font mb-2 md:w-2/5">ᴇᴇᴇᴄ ʜᴀʀᴅᴡᴀʀᴇ ꜱᴇʀᴠᴇꜱ ʏᴏᴜ ᴛʜᴇ ʙᴇꜱᴛ Qᴜᴀʟɪᴛʏ ᴏꜰ ᴘʀᴏᴅᴜᴄᴛꜱ ᴀɴᴅ ꜱᴛʀᴇᴀᴍʟɪɴᴇ ꜱᴇʀᴠɪᴄᴇꜱ ➲</h2>
+    <div class="md:w-3/5 md:pl-6">
+      <p class="leading-relaxed text-blue-900">EEEC Hardware Management System simplifies inventory, sales tracking, and customer orders, ensuring efficiency and accuracy. Optimize your hardware business with real-time updates and seamless management.</p>
+      <div class="flex md:mt-4 mt-6">
+        
+      </div>
+    </div>
+  </div>
+</section>
       @foreach($categories as $category)
-      <h1 class="flex justify-start ml-20 text-2xl mb-10 mt-10 items-center drop-shadow-xl text-gray-400 font-semibold head">{{ $category->name }}</h1>
+      <h1 class="flex justify-start ml-32 text-xl mb-10 mt-20 items-center drop-shadow-xl text-gray-300 head">{{ $category->name }}</h1>
       
-      <div class="container px-20 -mt-10 mx-auto">
+      <div class="container px-32 -mt-10 mx-auto">
     <div class="flex flex-wrap -m-4">
     
     @foreach ($products->where('category_id', $category->id) as $product)
@@ -223,9 +210,9 @@
     <div class="h-full border-2 shadow-xl border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
       <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
       <div class="p-6">
-        <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">BRAN NAME</h2>
-        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $product->name }}</h1>
-        <p class="leading-relaxed mb-3">{{ $product->description }}</p>
+        <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">BRAND NAME</h2>
+        <h1 class="title-font text-lg font-medium text-gray-300 mb-3">{{ $product->name }}</h1>
+        <p class="leading-relaxed mb-3 text-white">{{ $product->description }}</p>
         <div class="flex items-center flex-wrap ">
         <div x-data="{ open: false }">
           <button @click="open = true" class="text-indigo-500 border border-yellow-500 shadow-lg py-1 px-4 hover:bg-gray-100 rounded-sm bg-transparent inline-flex items-center md:mb-2 lg:mb-0">Buy
@@ -235,14 +222,14 @@
 </svg>
           </button>
 
-          <section x-show="open" class="text-gray-600 px-[19rem] hv-[10rem] justify-center flex items-center fixed inset-0 z-10 body-font overflow-hidden">
-                      <div class="container bg-white border border-gray-500 rounded-md shadow-lg px-5 py-4 mx-auto">
+          <section x-show="open" class="text-gray-600 px-[20rem] hv-[10rem] justify-center flex items-center fixed inset-0 z-10 body-font overflow-hidden">
+                      <div class="container bg-white border-2 border-yellow-500 rounded-md shadow-lg px-5 py-4 mx-auto">
                       
                       
                         <div class="mx-auto flex flex-wrap">
-                          <img alt="ecommerce" class="lg:w-1/2 w-full border-x-2 border-solid border-black lg:h-[19rem] object-cover object-center rounded" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
+                          <img alt="ecommerce" class="lg:w-1/2 w-full border-x border-solid border-yellow-500 lg:h-[19rem] object-cover object-center rounded" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
                           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <button @click="open = false" class="absolute justify-end items-center -mt-8 ml-[23.5rem] flex "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="hover:bg-gray-600 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
+                            <button @click="open = false" class="justify-end items-center -mt-8 ml-[23.5rem] flex "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="hover:bg-gray-600 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
                               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
                               </svg></button>
@@ -265,7 +252,7 @@
                             </div>
                             <div class="flex items-center">
                             <span class="title-font font-medium text-xl text-gray-900 mr-8">₱{{ number_format($product->price, 2) }}</span>
-                            <div class="space-x-2 flex">
+                            <div class="space-x-1 flex">
                             
                               <input type="hidden" name="product_id" value="{{ $product->id }}">
                               <input type="hidden" name="product_name" value="{{ $product->name }}">
@@ -313,63 +300,53 @@
   @endforeach
   
 
-  <footer class="text-gray-600 bg-black mt-12 opacity-90 body-font">
-  <div class="container px-5 py-20 -mb-6 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+  <footer class="text-gray-600 bg-black body-font">
+  <div class="container px-32 py-10 mt-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-      <a class="flex title-font font-medium ml-8 items-center md:justify-start justify-center text-gray-900">
-      <img src="/images/mainlogo.jpg" class="ml-2 rounded-full w-10 h-10 object-cover "/>
-        <span class="ml-3 text-xl font-mono text-white">EEECHARDWARE</span>
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl text-white">𝖊𝖊𝖊𝖈 𝖍𝖆𝖗𝖉𝖜𝖆𝖗𝖊✍</span>
       </a>
-      <p class="mt-2 text-sm ml-10 text-gray-500">for efficient sales and inventory management.</p>
+      <p class="mt-2 text-sm text-white">for efficient sales and inventory management.</p>
     </div>
-    <div class="flex-grow flex flex-wrap md:pl-20 -mb-20 -mt-10 md:text-left text-center">
+    <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">ABOUT US</h2>
+        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ᴀʙᴏᴜᴛ ᴜꜱ</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400  hover:text-gray-800">EEECHARDWARE offers a smart Hardware Business System to simplify inventory, sales, and transactions—boosting efficiency and growth.</a>
+            <a class="text-white hover:text-gray-600">ᴇᴇᴇᴄ ʜᴀʀᴅᴡᴀʀᴇ offers a smart Hardware Business System to simplify inventory, sales, and transactions—boosting efficiency and growth.</a>
           </li>
           
         </nav>
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium flex text-white tracking-widest text-sm mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2 bi bi-geo-alt-fill" viewBox="0 0 16 16">
-  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-</svg> OUR LOCATION</h2>
+        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ᴏᴜʀ ʟᴏᴄᴀᴛɪᴏɴ</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400  hover:text-gray-800"> 1209 Kamyas Street Sitio Gitna, Caybiga Caloocan City.</a>
+            <a class="text-white hover:text-gray-800">1209 Kamyas Street Sitio Gitna, Caybiga Caloocan City.</a>
           </li>
           
         </nav>
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium flex text-white tracking-widest text-sm mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2 bi bi-telephone-forward-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708"/>
-</svg> CONTACT NUMBER</h2>
+        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ᴄᴏɴᴛᴀᴄᴛ ɴᴜᴍʙᴇʀ</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-400  hover:text-gray-800"> +63 693 698 569</a>
+            <a class="text-white hover:text-gray-800">+63 603 698 569</a>
           </li>
           
         </nav>
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium flex text-white tracking-widest text-sm mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2 bi bi-telephone-forward-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708"/>
-</svg> YOUR ACCOUNT & MORE</h2>
+        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ & ᴍᴏʀᴇ</h2>
         <nav class="list-none mb-10">
           <li>
-            <a href="/register" class="text-gray-400 cursor-pointer flex hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-2 bi bi-person-plus-fill" viewBox="0 0 16 16">
-  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
-</svg> Create an account</a>
+            <a href="register" class="text-white cursor-pointer hover:text-gray-800 md:flex">↪ Create an account</a>
           </li>
           <li>
-            <a href="/login" class="text-gray-400 cursor-pointer flex hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="-ml-1 mr-3 bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
-  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-</svg> Login to your account</a>
+            <a href="/login" class="text-white cursor-pointer hover:text-gray-800 md:flex">🗹 Login to your account</a>
           </li>
           
         </nav>
@@ -377,11 +354,11 @@
     </div>
   </div>
   <div class="bg-gray-100">
-    <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+    <div class="container mx-auto py-4 px-32 flex items-center flex-wrap flex-col sm:flex-row">
       <p class="text-gray-500 text-sm text-center ml-1 sm:text-left">© 2025 EEECHARDWARE —
         <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@eeechardware</a>
       </p>
-      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 py-1 justify-center sm:justify-start">
         <!-- From Uiverse.io by david-mohseni --> 
 <ul class="wrapper">
   <li class="icon facebook">
@@ -426,6 +403,7 @@
     </svg>
   </li>
 </ul>
+
       </span>
     </div>
   </div>

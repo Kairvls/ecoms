@@ -33,7 +33,9 @@
                 @foreach ($order->details as $detail)
                     <tr>
                         <td class="p2 border text-sm border-black justify-center flex items-center py-1">{{ $order->user->fullname ?? 'N/A' }}</td>
-                        <td class="p2 border text-sm border-black py-1">{{ $order->pay_id }}</td>
+                        <td class="p2 border text-sm border-black py-1 cursor-pointer"><a href="{{ route('orders.details', ['pay_id' => $order->pay_id]) }}">
+        {{ $order->pay_id }}
+    </a></td>
                         <td class="p2 border text-sm border-black py-1">{{ $order->user->address ?? 'N/A' }}</td>
                         <td class="p2 border text-sm border-black py-1">{{ $order->user->contact_number ?? 'N/A' }}</td>
                         <td class="p2 border text-sm border-black py-1">{{ number_format($detail->product->price * $detail->quantity, 2) }}</td>
@@ -45,12 +47,12 @@
                                 <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="status" value="confirmed">
-                                    <button type="submit" class="btn btn-success bg-green-500 px-3 hover:bg-green-600 rounded-md">Confirm</button>
+                                    <button type="submit" class="btn btn-success text-white bg-green-500 px-3 hover:bg-green-600 rounded-md">Confirm</button>
                                 </form>
                                 <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="status" value="canceled">
-                                    <button type="submit" class="btn btn-danger bg-red-500 px-3 hover:bg-red-600 rounded-md">Reject</button>
+                                    <button type="submit" class="btn btn-danger text-white bg-red-500 px-3 hover:bg-red-600 rounded-md">Reject</button>
                                 </form>
                             @elseif ($order->status == 'confirmed')
                                 <form action="{{ route('orders.update', $order->id) }}" method="POST">
@@ -65,7 +67,7 @@
                                     <button type="submit" class="btn btn-info bg-blue-500 px-3 hover:bg-blue-600 rounded-md">Deliver</button>
                                 </form>
                             @elseif ($order->status == 'delivered')
-                                <span class="badge bg-success">Completed</span>
+                                <span class="badge bg-success bg-green-500 px-3 rounded-md">Completed</span>
                             @endif
                         </td>
                     </tr>

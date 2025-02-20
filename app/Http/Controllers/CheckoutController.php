@@ -38,15 +38,18 @@ class CheckoutController extends Controller
         return view('checkout', compact('cartItems', 'totalPrice'));
     }
 
-    public function showCheckout()
+    public function showCheckout(Request $request)
 {
-    // Get the user's cart items
-    $cartItems = Cart::where('user_id', auth()->id())->get();
+    // Get selected item IDs from the request
+    $selectedItemIds = explode(',', $request->selected_items);
+
+    // Filter only the selected items
+    $cartItems = Cart::where('user_id', auth()->id())
+                     ->whereIn('id', $selectedItemIds)
+                     ->get();
 
     // Calculate the total
-    $total = $cartItems->sum(function($cartItem) {
-        return $cartItem->product->price * $cartItem->quantity;
-    });
+    $total = $cartItems->sum(fn($cartItem) => $cartItem->product->price * $cartItem->quantity);
 
     return view('checkout', compact('cartItems', 'total'));
 }

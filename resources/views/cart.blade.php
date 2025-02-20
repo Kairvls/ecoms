@@ -75,7 +75,7 @@
             
         </form>
         </div>
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ asset('storage/' . $cartItem->product->photo) }}" alt="Product Image">
+          <img class="h-40 rounded w-full object-cover object-center mb-6 md:max-w-[10rem] rigth-0 md:max-h-[12rem] md:min-w-[2rem] md:min-h-[2rem]" src="{{ asset('storage/' . $cartItem->product->photo) }}" alt="Product Image">
           <h3 class="tracking-widest text-indigo-500 text-xs px-4 font-medium title-font">BRAND NAME</h3>
           <h2 class="text-lg text-gray-900 font-medium px-4 title-font mb-4">{{ $cartItem->product->name }}</h2>
           <p class="leading-relaxed px-4 text-base">Price: ₱{{ $cartItem->product->price }}</p>
@@ -110,7 +110,14 @@
       <div class="block">
       <h3 class="text-lg font-semibold py-2 text-white">Total Price: ₱<span id="total-price">0.00</span></h3>
       
-      <a onclick="showCheckout()" href="{{ route('checkout') }}" id="checkout" type="submit" class="btn btn-success bg-white border py-2 px-6 hover:bg-green-400 text-black rounded-md shadow-lg hover:text-white" disabled>✅ Checkout</a>
+      <form id="checkout-form" action="{{ route('checkout.show') }}" method="POST">
+    @csrf
+    <input type="hidden" name="selected_items" id="selected-items" value="">
+    <button type="submit" id="checkout" class="btn btn-success bg-white border py-2 px-6 hover:bg-green-400 text-black rounded-md shadow-lg hover:text-white opacity-50 pointer-events-none" disabled>
+        ✅ Checkout
+    </button>
+</form>
+      
       <p class="text-white py-2 text-sm">Please select order first to checkout.</p>
       </div>
       </article>
@@ -224,18 +231,24 @@
     </div>
 @endif
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll(".select-product");
     const totalPriceElement = document.getElementById("total-price");
     const checkoutBtn = document.getElementById("checkout");
+    const checkoutForm = document.getElementById("checkout-form");
+    const selectedItemsInput = document.getElementById("selected-items");
 
     function updateTotalPrice() {
         let total = 0;
         let hasSelection = false;
+        let selectedItems = [];
 
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
-                total += parseFloat(checkbox.dataset.price) * parseInt(checkbox.closest(".cart-item").querySelector(".quantity").value);
+                let quantity = parseInt(checkbox.closest(".cart-item").querySelector(".quantity").value);
+                let price = parseFloat(checkbox.dataset.price);
+                total += price * quantity;
+                selectedItems.push(checkbox.value); // Store selected item IDs
                 hasSelection = true;
             }
         });
@@ -243,6 +256,10 @@ document.addEventListener("DOMContentLoaded", function () {
         totalPriceElement.textContent = total.toFixed(2);
         checkoutBtn.classList.toggle("opacity-50", !hasSelection);
         checkoutBtn.classList.toggle("pointer-events-none", !hasSelection);
+        checkoutBtn.disabled = !hasSelection;
+
+        // Store selected items in hidden input
+        selectedItemsInput.value = selectedItems.join(",");
     }
 
     checkboxes.forEach((checkbox) => {
@@ -255,7 +272,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateTotalPrice();
 });
+
 </script>
+
 
 <script>
   function showCheckout() {

@@ -108,4 +108,10 @@
         this.submit();
     };
 </script>
+
+<script>
+  function showProfile() {
+    alert('Successfully change profile.');
+  }
+</script>
 @endsection

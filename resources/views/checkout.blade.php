@@ -29,7 +29,7 @@
     @endif
 
     @if ($cartItems->isEmpty())
-        <div class="alert alert-warning flex gap-[11rem]  items-center bg-white py-5 px-10 shadow-lg rounded-md">
+        <div class="alert alert-warning md:flex gap-[11rem]  items-center bg-white py-5 px-10 shadow-lg rounded-md">
             Your order has been placed successfully! We will notify you when it ships and is on its way.
             <a href="/userdashboard" class="flex justify-start text-sm bg-green-500 text-white px-5 py-2 shadow-lg rounded-md items-center hover:bg-green-600 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-check" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
