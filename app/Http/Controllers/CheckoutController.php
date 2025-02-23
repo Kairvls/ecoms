@@ -11,102 +11,96 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
 
     public function index()
     {
-        $cartItems = Cart::with('product')->get();
+        $cartItems = Cart::with('product')->where('user_id', Auth::id())->get();
         return view('checkout', compact('cartItems'));
     }
-    public function checkout()
-    {
-        // Get cart items for the current user
-        $cartItems = Cart::where('user_id', auth()->id())->get();
-    
-        if ($cartItems->isEmpty()) {
-            return redirect()->back()->with('error', 'Your cart is empty!');
-        }
-    
-        // Calculate total price
-        $totalPrice = $cartItems->sum(function($item) {
-            return $item->product->price * $item->quantity;
-        });
-    
-        // Pass cart items and total price to the view
-        return view('checkout', compact('cartItems', 'totalPrice'));
-    }
-
-    public function showCheckout(Request $request)
+    public function checkout(Request $request)
 {
-    // Get selected item IDs from the request
-    $selectedItemIds = explode(',', $request->selected_items);
-
-    // Filter only the selected items
-    $cartItems = Cart::where('user_id', auth()->id())
-                     ->whereIn('id', $selectedItemIds)
-                     ->get();
-
-    // Calculate the total
-    $total = $cartItems->sum(fn($cartItem) => $cartItem->product->price * $cartItem->quantity);
-
+    $selectedItemIds = $request->input('selected_items', []); // Get selected items
+    $cartItems = Cart::whereIn('id', $selectedItemIds)->get(); // Fetch only selected items
+    $total = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);
+    
     return view('checkout', compact('cartItems', 'total'));
 }
 
 
-    public function processCheckout(Request $request)
+
+    
+
+
+
+
+
+
+    public function checkoutProcess(Request $request)
 {
     DB::beginTransaction();
     try {
-        // Get the user's cart items
-        $cartItems = Cart::where('user_id', auth()->id())->get();
+        $user_id = Auth::id();
+        $selectedItems = $request->input('selected_items', []); // Get selected items from request
 
-        if ($cartItems->isEmpty()) {
-            return redirect()->back()->with('error', 'Your cart is empty!');
+        if (empty($selectedItems)) {
+            return redirect()->back()->with('error', 'No items selected for checkout!');
         }
 
-        // Calculate the total price
-        $total = $cartItems->sum(function($cartItem) {
+        // Get only the selected cart items
+        $cartItems = Cart::where('user_id', $user_id)
+                        ->whereIn('id', $selectedItems) // Filter only selected items
+                        ->get();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->back()->with('error', 'Selected items are no longer in your cart.');
+        }
+
+        // Calculate total price of selected items
+        $total = $cartItems->sum(function ($cartItem) {
             return $cartItem->product->price * $cartItem->quantity;
         });
 
-        // Create a sales record (order details)
-        $sale = Sales::create([
-            'user_id' => auth()->id(),
-            'pay_id' => Str::random(10),
-            'sales_date' => now(),
-            'status' => 'pending', // Set the default status
+        // Validate input
+        $request->validate([
+            'payment_method' => 'required|in:gcash,paymaya,bdo,bpi,go_tyme,cash_on_delivery',
         ]);
 
-        // Process each cart item and create details
+        // Create a sales record (order details)
+        $sale = Sales::create([
+            'user_id' => $user_id,
+            'payment_method' => $request->payment_method,
+            'pay_id' => Str::random(10),
+            'sales_date' => now(),
+            'status' => 'pending', // Default status
+        ]);
+
+        // Process each selected cart item and create order details
         foreach ($cartItems as $cartItem) {
             Details::create([
                 'sales_id' => $sale->id,
                 'product_id' => $cartItem->product_id,
                 'quantity' => $cartItem->quantity,
             ]);
-        }
 
-        // Decrement product stock (counter) ensuring it doesn't go below 0
-        foreach ($cartItems as $cartItem) {
+            // Decrement product stock ensuring it doesn't go below 0
             $cartItem->product->decrement('counter', min($cartItem->quantity, $cartItem->product->counter));
-        }
 
-        // Clear the user's cart
-        Cart::where('user_id', auth()->id())->delete();
+            // Remove the purchased item from the cart
+            $cartItem->delete();
+        }
 
         DB::commit();
 
-        // Redirect to success page with the total amount
-        return redirect('/checkout')->with('success', 'Checkout successful! Total: ₱' . number_format($total, 2));
+        return redirect('checkout')->with('success', 'Order placed successfully! Total: ₱' . number_format($total, 2));
     } catch (\Exception $e) {
         DB::rollBack();
         return redirect()->back()->with('error', 'An error occurred during checkout. Please try again.');
     }
-
 }
-
 
 
 }

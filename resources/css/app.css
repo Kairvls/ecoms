@@ -349,7 +349,7 @@ body {
 /* From Uiverse.io by WhiteNervosa */ 
 .textInputWrap {
   position: relative;
-  width: 250px;
+  width: 162px;
   margin: 12px 5px;
   --accent-color: #a3e583;
 }
@@ -583,9 +583,9 @@ body {
 
 
 .salesBarChart {
-  max-width:200px; /* Adjust max size */
-  max-height: 200px;
-  width: 10%; /* Make it responsive */
+  max-width: 1200px; /* Adjust max size */
+  max-height: 1200px;
+  width: 100%; /* Make it responsive */
   height: auto;
   justify-content: center;
   display: flex;
@@ -593,13 +593,15 @@ body {
 }
 
 .salesPieChart {
-  max-width:50px; /* Adjust max size */
-  max-height: 50px;
-  width: 10%; /* Make it responsive */
+  max-width:800px; /* Adjust max size */
+  max-height: 800px;
+  width: 75%; /* Make it responsive */
   height: auto;
   justify-content: center;
   display: flex;
   align-items: center;
+  margin-left:140px;
+  margin-top: 100px;
 }
 
 
@@ -995,3 +997,8 @@ body {
   background-color: white; /* Underline color */
   transition: width 0.3s ease;
 }
+
+
+
+
+

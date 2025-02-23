@@ -5,8 +5,14 @@
 @vite('resources/css/updateprofile.css')
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @if (session('success'))
+    <div id="success-message" class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded">
+        {{ session('success') }}
+    </div>
+
     <script>
-        alert("{{ session('success') }}");
+        setTimeout(() => {
+            document.getElementById("success-message").style.display = "none";
+        }, 3000); // Auto-hide after 3 seconds
     </script>
 @endif
 
@@ -58,10 +64,24 @@
 
       <div class="flex-column">
       <label>Current Password </label></div>
-      <div class="inputForm">
+      <div class="inputForm relative">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>        
-        <input placeholder="Enter your Current Password" class="input" name="current_password" type="password">
+        <input placeholder="Enter your Current Password" class="input" id="password" name="current_password" type="password">
+        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-2 mb-3 flex items-center">
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.543 7-1.275 4.057-5.065 7-9.543 7-4.477 0-8.268-2.943-9.543-7z"/>
+        </svg>
+
+        <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A9.956 9.956 0 0112 19c-4.477 0-8.268-2.943-9.543-7 1.275-4.057 5.065-7 9.543-7a9.956 9.956 0 011.875.175M3 3l18 18"/>
+        </svg>
+    </button>
+
       </div>
+      @error('new_password')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
 
       <div class="flex-column">
       <label> New Password</label></div>
@@ -71,17 +91,20 @@
   <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 </svg>
         <input placeholder="Enter your New Password" id="new_password" class="input" name="new_password" type="password">
+
       </div>
+      
 
       <div class="flex-column">
       <label>Confirm New Password </label></div>
       <div class="inputForm">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone-plus" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-plus" viewBox="0 0 16 16">
   <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
   <path fill-rule="evenodd" d="M12.5 1a.5.5 0 0 1 .5.5V3h1.5a.5.5 0 0 1 0 1H13v1.5a.5.5 0 0 1-1 0V4h-1.5a.5.5 0 0 1 0-1H12V1.5a.5.5 0 0 1 .5-.5"/>
 </svg>
         <input placeholder="Enter your Confirm New Password" class="input" name="new_password_confirmation" type="password">
       </div>
+      
       <div class="flex items-center gap-4 mt-4">
       <img src="/images/mainlogo.jpg" class="w-16 h-16 rounded-full"/>
       <p class="text-md text-black font-semibold">ᴇᴇᴇᴄ ʜᴀʀᴅᴡᴀʀᴇ</p>
@@ -90,7 +113,7 @@
       </div>
     
     
-    <button type="submit" id="updateProfile" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-400 hover:bg-yellow-500">ꜱᴀᴠᴇ ᴄʜᴀɴɢᴇꜱ</button>
+    <button type="submit" id="updateProfile" onclick="showProfile()" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-400 hover:bg-yellow-500">ꜱᴀᴠᴇ ᴄʜᴀɴɢᴇꜱ</button>
     
 
     
@@ -111,7 +134,25 @@
 
 <script>
   function showProfile() {
-    alert('Successfully change profile.');
+    alert('Your profile has been updated successfully');
   }
+</script>
+
+<script>
+function togglePassword() {
+    let passwordInput = document.getElementById("password");
+    let eyeOpen = document.getElementById("eyeOpen");
+    let eyeClosed = document.getElementById("eyeClosed");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeOpen.classList.add("hidden");
+        eyeClosed.classList.remove("hidden");
+    } else {
+        passwordInput.type = "password";
+        eyeOpen.classList.remove("hidden");
+        eyeClosed.classList.add("hidden");
+    }
+}
 </script>
 @endsection

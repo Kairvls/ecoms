@@ -66,52 +66,28 @@ class CartController extends Controller
     }
 
     // Checkout & Reduce Stock
-    public function checkout(Request $request)
-    {
-        $user_id = Auth::id();
-        $selectedItems = $request->input('selected_items', []);
+    
 
-        if (empty($selectedItems)) {
-            return response()->json(['message' => 'No items selected for checkout'], 400);
-        }
+public function checkout(Request $request) {
+    $selectedItems = $request->input('selected_items', []);
 
-        $cartItems = Cart::where('user_id', $user_id)->whereIn('id', $selectedItems)->get();
-
-        if ($cartItems->isEmpty()) {
-            return response()->json(['message' => 'Cart is empty'], 400);
-        }
-
-        // Validate stock before proceeding
-        foreach ($cartItems as $item) {
-            if ($item->product->counter < $item->quantity) {
-                return response()->json(['message' => 'Not enough stock for ' . $item->product->name], 400);
-            }
-        }
-
-        // Create Sales record
-        $sale = Sales::create([
-            'user_id' => $user_id,
-            'pay_id' => uniqid(),
-            'sales_date' => now(),
-        ]);
-
-        // Process cart items
-        foreach ($cartItems as $item) {
-            $product = $item->product;
-            $product->decrement('counter', $item->quantity);
-
-            Details::create([
-                'sales_id' => $sale->id,
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-            ]);
-        }
-
-        // Remove checked-out items from cart
-        Cart::where('user_id', $user_id)->whereIn('id', $selectedItems)->delete();
-
-        return response()->json(['message' => 'Checkout successful', 'sales' => $sale]);
+    if (empty($selectedItems)) {
+        return redirect()->back()->with('error', 'No items selected for checkout.');
     }
+
+    // Fetch the selected products from the database
+    $cartItems = Cart::whereIn('id', $selectedItems)->get();
+
+    session(['checkout_items' => $cartItems]);
+
+    return redirect()->route('checkout');
+}
+
+
+
+
+
+
 
     // Remove from Cart
     public function remove($id)
@@ -128,3 +104,4 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 }
+

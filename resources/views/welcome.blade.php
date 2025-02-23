@@ -174,8 +174,11 @@
 <section class="text-gray-600 body-font">
   <div class="container px-32 py-24 -mb-32 mx-auto flex flex-wrap">
     <h2 class="sm:text-3xl text-2xl text-white font-medium title-font mb-2 md:w-2/5">ᴇᴇᴇᴄ ʜᴀʀᴅᴡᴀʀᴇ ꜱᴇʀᴠᴇꜱ ʏᴏᴜ ᴛʜᴇ ʙᴇꜱᴛ Qᴜᴀʟɪᴛʏ ᴏꜰ ᴘʀᴏᴅᴜᴄᴛꜱ ᴀɴᴅ ꜱᴛʀᴇᴀᴍʟɪɴᴇ ꜱᴇʀᴠɪᴄᴇꜱ ➲</h2>
-    <div class="md:w-3/5 md:pl-6">
-      <p class="leading-relaxed text-blue-900">EEEC Hardware Management System simplifies inventory, sales tracking, and customer orders, ensuring efficiency and accuracy. Optimize your hardware business with real-time updates and seamless management.</p>
+    
+    <div class="md:w-3/5 md:pl-6 flex">
+    <span class="text-gray-400 inline-flex items-center md:mr-10 lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+    </span>
+      <p class="leading-relaxed text-yellow-500">EEEC Hardware Management System simplifies inventory, sales tracking, and customer orders, ensuring efficiency and accuracy. Optimize your hardware business with real-time updates and seamless management.</p>
       <div class="flex md:mt-4 mt-6">
         
       </div>
@@ -293,16 +296,16 @@
   <div class="container px-32 py-10 mt-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
       <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="blue" class="bi bi-bell-fill" viewBox="0 0 16 16">
+      <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+    </svg>
         <span class="ml-3 text-xl text-white">𝖊𝖊𝖊𝖈 𝖍𝖆𝖗𝖉𝖜𝖆𝖗𝖊✍</span>
       </a>
       <p class="mt-2 text-sm text-white">for efficient sales and inventory management.</p>
     </div>
     <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ᴀʙᴏᴜᴛ ᴜꜱ</h2>
+        <h2 class="title-font font-medium text-yellow-500 tracking-widest text-lg mb-3">ᴀʙᴏᴜᴛ ᴜꜱ</h2>
         <nav class="list-none mb-10">
           <li>
             <a class="text-white hover:text-gray-600">ᴇᴇᴇᴄ ʜᴀʀᴅᴡᴀʀᴇ offers a smart Hardware Business System to simplify inventory, sales, and transactions—boosting efficiency and growth.</a>
@@ -311,7 +314,7 @@
         </nav>
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ᴏᴜʀ ʟᴏᴄᴀᴛɪᴏɴ</h2>
+        <h2 class="title-font font-medium text-yellow-500 tracking-widest text-lg mb-3">ᴏᴜʀ ʟᴏᴄᴀᴛɪᴏɴ</h2>
         <nav class="list-none mb-10">
           <li>
             <a class="text-white hover:text-gray-800">1209 Kamyas Street Sitio Gitna, Caybiga Caloocan City.</a>
@@ -320,7 +323,7 @@
         </nav>
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ᴄᴏɴᴛᴀᴄᴛ ɴᴜᴍʙᴇʀ</h2>
+        <h2 class="title-font font-medium text-yellow-500 tracking-widest text-lg mb-3">ᴄᴏɴᴛᴀᴄᴛ ɴᴜᴍʙᴇʀ</h2>
         <nav class="list-none mb-10">
           <li>
             <a class="text-white hover:text-gray-800">+63 603 698 569</a>
@@ -329,7 +332,7 @@
         </nav>
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-blue-900 tracking-widest text-lg mb-3">ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ & ᴍᴏʀᴇ</h2>
+        <h2 class="title-font font-medium text-yellow-500 tracking-widest text-lg mb-3">ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ & ᴍᴏʀᴇ</h2>
         <nav class="list-none mb-10">
           <li>
             <a href="/register" class="text-white cursor-pointer hover:text-gray-800 md:flex">↪ Create an account</a>
@@ -342,7 +345,7 @@
       </div>
     </div>
   </div>
-  <div class="bg-gray-100">
+  <div class="bg-yellow-500">
     <div class="container mx-auto py-4 px-32 flex items-center flex-wrap flex-col sm:flex-row">
       <p class="text-gray-500 text-sm text-center ml-1 sm:text-left">© 2025 EEECHARDWARE —
         <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@eeechardware</a>

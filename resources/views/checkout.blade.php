@@ -43,10 +43,14 @@
       <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
     </svg></a>
+    
             <h2 class="text-lg font-bold mb-4">Order Summary</h2>
+            <form action="{{ route('checkout.process') }}" method="POST">
+            @csrf
             <table class="w-full mb-4">
                 <thead>
                     <tr class="text-left border-b">
+                    <th>Select</th>
                         <th>Product Image</th>
                         <th>Product Name</th>
                         <th>Price</th>
@@ -57,8 +61,11 @@
                 <tbody>
                     
                     @foreach($cartItems as $cartItem)
-                       
+                    
                         <tr class="border-b">
+                            <td class="py-2 shadow-lg">
+                                <input id="selectItem" class="ml-10 selectItem cursor-pointer" type="checkbox" name="selected_items[]" value="{{ $cartItem->id }}">
+                            </td>
                             <td class="py-2 shadow-lg">
                                 <img src="{{ asset('storage/' . $cartItem->product->photo) }}" alt="Product Image" style="width: 50px;">
                             </td>
@@ -75,8 +82,7 @@
             </div>
 
             <h4 class="font-semibold">Billing & Shipping Information</h4>
-        <form action="{{ route('checkout.process') }}" method="POST">
-            @csrf
+            
             <div class="flex mt-2 justify-start">
                 <div class="block">
             
@@ -115,7 +121,11 @@
             <label for="payment_method" class="ml-1">Payment Method:</label>
             <div class="textInputWrapper">
             <select name="payment_method" id="payment_method" class="form-control border-black w-full p-2 border rounded" required>
-                        <option value="credit_card">Credit Card</option>
+                        <option value="gcash">GCash</option>
+                        <option value="paymaya">PayMaya</option>
+                        <option value="bdo">BDO</option>
+                        <option value="bpi">BPI</option>
+                        <option value="go_tyme">GoTyme</option>
                         <option value="cash_on_delivery">Cash on Delivery</option>
                     </select>
             </div>
@@ -131,7 +141,7 @@
 
                 <div class="d-flex justify-content-between mt-3">
                 <a href="{{ route('cart') }}" class="btn btn-secondary bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-600 transition">🛒 Back to Cart</a>
-                <button type="submit" class="btn btn-success bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">✅ Place Order</button>
+                <button type="submit" id="placeOrderBtn" onclick="showCheckout()" class="btn btn-success bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">✅ Place Order</button>
             </div>
         </form>
             
@@ -141,7 +151,36 @@
 </section>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const checkbox = document.getElementById("selectItem");
+    const placeOrderBtn = document.getElementById("placeOrderBtn");
 
+    // Function to toggle button state
+    function toggleButtonState() {
+        if (checkbox.checked) {
+            placeOrderBtn.disabled = false;
+            placeOrderBtn.classList.remove("opacity-50");
+        } else {
+            placeOrderBtn.disabled = true;
+            placeOrderBtn.classList.add("opacity-50");
+        }
+    }
+
+    // Initialize button state
+    toggleButtonState();
+
+    // Listen for checkbox change
+    checkbox.addEventListener("change", toggleButtonState);
+});
+</script>
+
+
+<script>
+    function showCheckout() {
+        alert('Please confirm to place order.');
+    }
+</script>
 
 
 </body>

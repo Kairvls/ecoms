@@ -32,6 +32,12 @@
         </div>
 
         <div class="mb-4">
+            <label for="srp" class="block text-gray-700 form-label">SRP:</label>
+            <input type="number" name="srp" id="srp" step="0.01" value="{{ old('srp', $product->srp ?? '') }}" class="w-full p-2 border rounded form-control">
+        </div>
+
+
+        <div class="mb-4">
             <label class="block text-gray-700">Product Description:</label>
             <textarea name="description" class="w-full p-2 border rounded">{{ $product->description }}</textarea>
         </div>

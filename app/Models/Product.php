@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $table = 'products';
     protected $fillable = [
-        'category_id', 'name', 'description', 'slug', 'price', 'photo', 'date_view', 'counter'
+        'category_id', 'name', 'description', 'slug', 'price', 'srp', 'photo', 'date_view', 'counter'
     ];
 
     public function reduceStock($quantity) {

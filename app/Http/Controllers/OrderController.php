@@ -54,5 +54,20 @@ public function remove($id)
         return redirect()->route('my-orders');
     }
 
+
+    public function removeAll()
+{
+    $details = Details::all(); // Get all cart details
+
+    foreach ($details as $detail) {
+        $product = $detail->product;
+        $product->counter += $detail->quantity; // Restore stock
+        $product->save();
+        $detail->delete(); // Delete cart item
+    }
+
+    return redirect()->route('my-orders')->with('success', 'All items removed.');
+}
+
     
 }

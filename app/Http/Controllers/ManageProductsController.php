@@ -23,6 +23,7 @@ class ManageProductsController extends Controller
             'name' => 'required|string',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
+            'srp' => 'nullable|numeric',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif',
             'counter' => 'required|integer',
         ]);
@@ -59,6 +60,7 @@ class ManageProductsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
+            'srp' => 'required|numeric',
             'description' => 'nullable|string',
             'counter' => 'nullable|integer',
             'photo' => 'nullable|image|max:2048' // Ensure it's an image

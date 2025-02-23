@@ -44,7 +44,15 @@
                         <td class="p2 border text-sm border-black py-1">{{ $order->user->contact_number }}</td>
                         <td class="p2 border text-sm border-black py-1">₱{{ number_format($detail->product->price * $detail->quantity, 2) }}</td>
                         <td class="p2 border text-sm border-black py-1">{{ $detail->quantity }}</td>
-                        <td class="p2 border text-sm border-black py-1">COD</td>
+                        <td class="p2 border text-sm border-black py-1">
+                        @if($order->payment_method == 'gcash') GCash
+                            @elseif($order->payment_method == 'paymaya') PayMaya
+                            @elseif($order->payment_method == 'bdo') BDO
+                            @elseif($order->payment_method == 'bpi') BPI
+                            @elseif($order->payment_method == 'go_tyme') GoTyme
+                            @elseif($order->payment_method == 'cash_on_delivery') Cash on Delivery
+                            @endif
+                        </td>
                         <td class="p2 border text-sm border-black py-1">{{ $order->status }}</td>
                         
                     </tr>

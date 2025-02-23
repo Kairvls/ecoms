@@ -26,7 +26,7 @@ class AdminController extends Controller
             return redirect()->intended('/admindashboard');
         }
 
-        return back()->withErrors(['username' => 'Invalid credentials']);
+        return back()->withErrors(['username', 'password' => 'Invalid credentials']);
     }
 
     public function logout()

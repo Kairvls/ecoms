@@ -38,10 +38,12 @@ class AuthController extends Controller
                 'password' => 'required|string',
             ]);
 
-            if (Auth::attempt($credentials)) {
+            $remember = $request->has('remember');
+
+            if (Auth::attempt($credentials, $remember)) {
                 $request->session()->put('username', Auth::user()->username);
 
-                return redirect()->route('userdashboard'); // Change 'dashboard' to your actual route
+                return redirect()->route('userdashboard')->with('success', 'Successfully Logged In.'); // Change 'dashboard' to your actual route
             }
 
             return back()->withErrors(['login' => 'Invalid username or password.']);
@@ -65,7 +67,7 @@ class AuthController extends Controller
                 // Check if the user wants to update the password
                 if ($request->filled('current_password')) {
                     if (!Hash::check($request->current_password, $user->password)) {
-                        return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+                        return back()->withErrors(['current_password', 'new_password' => 'Current password is incorrect.']);
                     }
 
                     $user->password = Hash::make($request->new_password);

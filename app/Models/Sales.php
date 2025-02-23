@@ -10,7 +10,7 @@ class Sales extends Model
     use HasFactory;
     
     protected $table = 'sales';
-    protected $fillable = ['user_id', 'pay_id', 'sales_date',  'status'];
+    protected $fillable = ['user_id','payment_method', 'pay_id', 'sales_date',  'status'];
 
     // Relationship: A sale has many details (order items)
     public function details()

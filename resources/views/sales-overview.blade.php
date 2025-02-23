@@ -3,16 +3,17 @@
 @extends('admindashboard')
 
 @section('content')
+@vite('resources/css/app.css')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="p-10">
     <article class="bg-white px-10 py-10 shadow-lg rounded-lg">
     <h2>Sales Overview</h2>
 
     <!-- Bar Chart -->
-    <canvas id="salesBarChart" ></canvas>
+    <canvas id="salesBarChart" class="salesBarChart" ></canvas>
 
     <!-- Pie Chart -->
-    <canvas id="salesPieChart" ></canvas>
+    <canvas id="salesPieChart" class="salesPieChart" ></canvas>
 
     
 </article>

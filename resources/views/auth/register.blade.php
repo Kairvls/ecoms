@@ -53,9 +53,19 @@
       </div>
       <div class="flex-column">
       <label>Password </label></div>
-      <div class="inputForm">
+      <div class="inputForm relative">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>        
-        <input placeholder="Enter your Password" class="input" name="password" type="password">
+        <input placeholder="Enter your Password" id="password" class="input" name="password" type="password">
+        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-2 mb-3 flex items-center">
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.543 7-1.275 4.057-5.065 7-9.543 7-4.477 0-8.268-2.943-9.543-7z"/>
+        </svg>
+
+        <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A9.956 9.956 0 0112 19c-4.477 0-8.268-2.943-9.543-7 1.275-4.057 5.065-7 9.543-7a9.956 9.956 0 011.875.175M3 3l18 18"/>
+        </svg>
+    </button>
       </div>
       </div>
       
@@ -101,7 +111,7 @@
       </div>
       
     </div>
-    <button type="submit" onclick="showAlert()" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ʀᴇɢɪꜱᴛᴇʀ</button>
+    <button type="submit" class="flex justify-center items-center border border-black w-full py-2 rounded-md shadow-lg text-black bg-yellow-500">ʀᴇɢɪꜱᴛᴇʀ</button>
     <p class="p">Already have an Account? <a href="/login"><span class="span">Log In</span></a>
 
     
@@ -111,6 +121,25 @@
   function showAlert() {
     alert('Successfully Registered.');
   }
+</script>
+
+
+<script>
+function togglePassword() {
+    let passwordInput = document.getElementById("password");
+    let eyeOpen = document.getElementById("eyeOpen");
+    let eyeClosed = document.getElementById("eyeClosed");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeOpen.classList.add("hidden");
+        eyeClosed.classList.remove("hidden");
+    } else {
+        passwordInput.type = "password";
+        eyeOpen.classList.remove("hidden");
+        eyeClosed.classList.add("hidden");
+    }
+}
 </script>
 </body>
 </html>

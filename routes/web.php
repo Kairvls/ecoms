@@ -15,8 +15,19 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\OrderIdManagementController;
 use Illuminate\View\View;
+
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
+
 
 
 Route::get('/', function () {
@@ -116,20 +127,61 @@ Route::get('/manage-accounts', [ManageController::class, 'manageAccounts'])->nam
 Route::post('/manage-accounts', [ManageController::class, 'store'])->name('store');
 
 
+
+
+
+
+
+
+
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/update', [CartController::class, 'add'])->name('cart.update');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
+
+
+
+
+
 Route::patch('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
-Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+
+
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'checkoutProcess'])->name('checkout.process');
+Route::get('/checkout/process', [CheckoutController::class, 'checkoutProcess'])->name('checkout.process');
+
+
+
+
+
+
+
+
+Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.submit');
+Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.post');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/my-orders', [OrderController::class, 'index'])->name('my.orders');
 Route::post('/my-orders/remove/{id}', [OrderController::class, 'remove'])->name('my.orders.remove');
+Route::post('/my-orders/removeAll', [OrderController::class, 'remove'])->name('my.orders.removeall');
 Route::get('/my-orders/{status?}', [OrderController::class, 'index'])->name('my-orders');
 
 
