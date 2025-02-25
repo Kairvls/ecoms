@@ -45,7 +45,7 @@
     </svg></a>
     
             <h2 class="text-lg font-bold mb-4">Order Summary</h2>
-            <form action="{{ route('checkout.process') }}" method="POST">
+            <form action="{{ route('checkout.process.post') }}" method="POST">
             @csrf
             <table class="w-full mb-4">
                 <thead>
@@ -152,27 +152,24 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const checkbox = document.getElementById("selectItem");
-    const placeOrderBtn = document.getElementById("placeOrderBtn");
+document.addEventListener('DOMContentLoaded', function () {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let placeOrderBtn = document.getElementById('placeOrderBtn');
 
-    // Function to toggle button state
-    function toggleButtonState() {
-        if (checkbox.checked) {
-            placeOrderBtn.disabled = false;
-            placeOrderBtn.classList.remove("opacity-50");
-        } else {
-            placeOrderBtn.disabled = true;
-            placeOrderBtn.classList.add("opacity-50");
-        }
+    function updateButtonState() {
+        let selected = document.querySelectorAll('input[type="checkbox"]:checked').length > 0;
+        placeOrderBtn.disabled = !selected;
+        placeOrderBtn.style.opacity = selected ? '1' : '0.5';
     }
 
-    // Initialize button state
-    toggleButtonState();
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateButtonState);
+    });
 
-    // Listen for checkbox change
-    checkbox.addEventListener("change", toggleButtonState);
+    // Ensure the button starts in the correct state on page load
+    updateButtonState();
 });
+
 </script>
 
 

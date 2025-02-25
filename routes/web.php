@@ -136,8 +136,8 @@ Route::post('/manage-accounts', [ManageController::class, 'store'])->name('store
 
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-Route::post('/cart/update', [CartController::class, 'add'])->name('cart.update');
+Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+//Route::post('/cart/update', [CartController::class, 'add'])->name('cart.update');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 
@@ -145,13 +145,13 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 
 
-Route::patch('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
 
 
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
-Route::post('/checkout/process', [CheckoutController::class, 'checkoutProcess'])->name('checkout.process');
-Route::get('/checkout/process', [CheckoutController::class, 'checkoutProcess'])->name('checkout.process');
+Route::post('/checkout/process', [CheckoutController::class, 'checkoutProcess'])->name('checkout.process.post');
+//Route::get('/checkout/process', [CheckoutController::class, 'checkoutProcess'])->name('checkout.process.get');
 
 
 

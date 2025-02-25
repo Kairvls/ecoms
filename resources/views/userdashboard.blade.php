@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind in Laravel</title>
+    <title>View Products</title>
     
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -210,6 +210,7 @@
     
     @foreach ($products->where('category_id', $category->id) as $product)
 <div class="p-4 md:w-1/4">
+
     <div class="h-full border-2 shadow-xl border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
       <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}">
       <div class="p-6">
@@ -253,6 +254,10 @@
                             
 
                             </div>
+                            @if ($product->counter <= 0)
+                                <p class="text-danger mb-1 md:flex text-red-600">Not enough stock available for {{ $product->name }}</p>
+                            @endif
+                            
                             <div class="flex items-center">
                             <span class="title-font font-medium text-xl text-gray-900 mr-8">₱{{ number_format($product->price, 2) }}</span>
                             <div class="space-x-1 flex">
@@ -261,7 +266,7 @@
                               <input type="hidden" name="product_name" value="{{ $product->name }}">
                               <input type="hidden" name="product_price" value="{{ $product->price }}">
                               
-                              <button type="submit" class="btn btn-primary flex text-black font-semibold shadow-lg bg-gray-200 hover:bg-gray-300 py-2 px-4">
+                              <button type="submit" data-id="{{ $product->id }}" {{ $product->counter <= 0 ? 'disabled' : '' }} class="btn btn-primary add-to-cart flex text-black font-semibold shadow-lg bg-gray-200 hover:bg-gray-300 py-2 px-4">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-1 bi bi-cart-check" viewBox="0 0 16 16">
                                       <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -494,6 +499,7 @@
         });
     });
 </script>
+
 
 </body>
 </html>

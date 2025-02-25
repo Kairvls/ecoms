@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind in Laravel</title>
+    <title>View Products</title>
     
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -142,7 +142,7 @@
                                                         ✖
                                                     </button>
                                                     <img class="w-full h-48 object-cover rounded-md"
-                                                         src="{{ asset('storage/' . $product->photo) }}"
+                                                         src="{{ asset(path: 'storage/' . $product->photo) }}"
                                                          alt="{{ $product->name }}">
                                                     <h2 class="text-lg font-bold text-gray-900">{{ $product->name }}</h2>
                                                     <p class="text-gray-500">{{ $product->description }}</p>

@@ -11,7 +11,7 @@
     
     
 <article class="px-10 py-10 shadow-xl h-full w-full rounded-lg bg-opacity-50 bg-white bg-cover bg-center bg-no-repeat bg-fixed" >
-<a href="/userdashboard" class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="hover:bg-gray-300 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
+<a href="{{ route('userdashboard') }}" class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="hover:bg-gray-300 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
       <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
     </svg></a>
@@ -21,12 +21,13 @@
 </svg> ᴍʏ ᴄᴀʀᴛ</h2>
 <form id="checkout-form" action="{{ route('checkout') }}" method="POST">
   @csrf
+  
 <div class="flex flex-wrap cart-items -m-4 mt-10">
   
 
     @foreach($cartItems as $cartItem)
       <div class="xl:w-1/4 md:w-1/2 p-4">
-      <div class="block">
+      
         <div class="cart-item bg-white mb-4 shadow-xl grow rounded-lg">
           <div class="flex w-full md:gap-[16.5rem]">
 
@@ -68,29 +69,25 @@
 
 
 
-        
-        <form action="{{ route('cart.remove', $cartItem->id) }}" method="POST">
-            @csrf
-            @method('POST')
-            <button type="submit" class="mt-1 border rounded-md shadow-xl hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="hover:bg-gray-200 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
+ 
+           <!-- <button type="submit" class="mt-1 border rounded-md shadow-xl hover:text-white">-->
+           <a href="{{ route('cart.remove', $cartItem->id) }}"  class="mt-1 border rounded-md shadow-xl hover:text-white">
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="hover:bg-gray-200 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-            </svg></button>
+            </svg></a>
             
-        </form>
+ 
         </div>
           <img class="h-40 rounded w-full object-cover object-center mb-6 md:max-w-[10rem] rigth-0 md:max-h-[12rem] md:min-w-[2rem] md:min-h-[2rem]" src="{{ asset('storage/' . $cartItem->product->photo) }}" alt="Product Image">
           <h3 class="tracking-widest text-indigo-500 text-xs px-4 font-medium title-font">BRAND NAME</h3>
           <h2 class="text-lg text-gray-900 font-medium px-4 title-font mb-4">{{ $cartItem->product->name }}</h2>
           <p class="leading-relaxed px-4 text-base">Price: ₱{{ $cartItem->product->price }}</p>
           <p class="leading-relaxed px-4 text-base">Stock: {{ $cartItem->product->counter }}</p>
-          <form class="px-4" action="{{ route('cart.update', $cartItem->id) }}" method="POST">
-            @csrf
-            <label class="text-black">Quantity: </label>
-            <input type="hidden" name="_method" value="PATCH">
-            <input type="number" class="quantity border border-black px-1" name="quantity" min="1" max="{{ $cartItem->product->counter }}" value="{{ $cartItem->quantity }}">
-            <button type="submit" class="py-[1.6px] px-2 bg-yellow-400 rounded-md hover:bg-yellow-500 text-white">ᴜᴘᴅᴀᴛᴇ</button>
-        </form>
+            <label class="text-black ml-4">Quantity: </label>
+            <!-- <input type="hidden" name="_method" value="POST"> -->
+            <input type="number"  id="quantity_{{ $cartItem->id }}" class="quantity border border-black px-1" name="quantity" min="1" max="{{ $cartItem->product->counter }}" value="{{ $cartItem->quantity }}">
+            <a href="#" class="update-cart py-[1.6px] px-2 bg-yellow-400 rounded-md hover:bg-yellow-500 text-white" data-id="{{ $cartItem->id }}">ᴜᴘᴅᴀᴛᴇ</a>
 
         <div x-data="{ quantity: {{ $cartItem->quantity }}, price: {{ $cartItem->product->price }} }" >
           <!-- Total Price Display -->
@@ -102,6 +99,10 @@
       </div>
       @endforeach
       
+      
+      
+      </div>
+      
       <div class="block">
       <h3 class="text-md py-2 text-black">Total Price: ₱<span id="total-price">0.00</span></h3>
       <button type="submit" id="checkout" class="btn btn-success bg-white border py-2 px-6 hover:bg-green-400 text-black rounded-md shadow-lg hover:text-white opacity-50 pointer-events-none" disabled>
@@ -109,10 +110,15 @@
       </button>
       <p class="text-white py-2 text-sm">Please select order first to checkout.</p>
       </div>
-      </div>
+      
       </div>
       
       
+</form>
+
+<form id="remove-cart-form" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
 </form>
       
       </article>
@@ -133,7 +139,7 @@
 <div class="container p-10 bg-opacity-50 h-screen bg-cover bg-center bg-no-repeat bg-fixed"  style="background-image: url('http://127.0.0.1:8000/images/hardwareequipment.jpg');">
 
 <article class="px-10 py-10 shadow-xl h-full w-full rounded-lg bg-opacity-50 bg-white bg-cover bg-center bg-no-repeat bg-fixed" >
-<a href="/userdashboard" class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="hover:bg-gray-300 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
+<a href="{{ route('userdashboard') }}" class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="hover:bg-gray-300 hover:text-white cursor-pointer bi bi-x-square" viewBox="0 0 16 16">
       <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
     </svg></a>
@@ -278,6 +284,8 @@
     updateTotalPrice();
 });
 
+
+
 </script>
 
 
@@ -286,5 +294,31 @@
     alert('Please confirm to checkout.');
   }
 </script>
+
+<script>
+    document.querySelectorAll('.update-cart').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            let cartItemId = this.getAttribute('data-id');
+            //alert(cartItemId);
+            let quantityInput = this.previousElementSibling.value; // Get the value of the quantity input
+
+            // Create a hidden form input inside the existing form
+            let form = document.querySelector('form'); // Select your existing form
+            let input = document.getElementById('quantity_' + cartItemId);
+            input.type = 'hidden';
+            input.name = 'quantity';
+            input.value = quantityInput;
+            //alert(quantityInput);
+
+            // Append the input and update the form action dynamically
+            form.appendChild(input);
+            form.action = "{{ route('cart.update', '') }}/" + cartItemId;
+            form.submit();
+        });
+    });
+</script>
+
 
 @endsection

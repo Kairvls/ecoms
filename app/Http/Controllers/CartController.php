@@ -18,27 +18,30 @@ class CartController extends Controller
     }
 
     // Add to Cart
-    public function add(Request $request)
-    {
-        $product = Product::findOrFail($request->product_id);
-        $quantity = $request->quantity;
+    
+
+    public function add(Request $request) {
+        $product = Product::find($request->product_id);
         $user_id = Auth::id();
-
-        $cartItem = Cart::where('user_id', $user_id)->where('product_id', $product->id)->first();
-
-        if ($cartItem) {
-            $cartItem->quantity += $quantity;
-            $cartItem->save();
-        } else {
+    
+        if ($product && $product->counter >= $request->quantity) {
+            // Subtract the quantity from stock
+            $product->counter -= $request->quantity;
+            $product->save();
+    
+            // Add to cart (session or database)
             Cart::create([
                 'user_id' => $user_id,
                 'product_id' => $product->id,
-                'quantity' => $quantity,
+                'quantity' => $request->quantity
             ]);
+    
+            return redirect()->route('cart')->with(['success' => 'Product added to cart!', 'new_stock' => $product->counter]);
+        } else {
+            return back()->withErrors(['userdashboard' => 'Enough stock available']);
         }
-
-        return redirect()->route('cart');
     }
+    
 
     // Update Cart
     public function update(Request $request, $id)
@@ -103,5 +106,8 @@ public function checkout(Request $request) {
 
         return redirect()->route('cart');
     }
+
+
+    
 }
 
