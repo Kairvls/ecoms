@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
 
-<div id="app" class="container p-10 bg-opacity-50 bg-cover bg-center bg-no-repeat bg-fixed"  style="background-image: url('http://127.0.0.1:8000/images/hardwareequipment.jpg');">
+<div id="app" class="p-10 bg-opacity-50 w-full block justify-center items-center bg-cover bg-center bg-no-repeat bg-fixed"  style="background-image: url('http://127.0.0.1:8000/images/hardwareequipment.jpg');">
    
 
     @if($orders->count() > 0)
@@ -25,7 +25,7 @@
         <div class="card">
         <div class="card-header text-center">
             <h2 class="mb-4 text-[30px] font-semibold text-gray-700 bg-white bg-opacity-50">ᴍʏ ᴏʀᴅᴇʀ(ꜱ)</h2>
-            <ul class="nav nav-tabs justify-content-center xl:gap-x-[7.9rem] md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
+            <ul class="nav nav-tabs justify-content-center xl:gap-x-[7.9rem] md:gap-x-[7.9rem] md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
                 @foreach(['pending', 'confirmed', 'to_ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
                     <li class="nav-item py-1 font-thin">
                         <a onclick="showColor()" class="md:mb-2 nav-link {{ $status == $tab ? 'active' : '' }}" 
@@ -45,7 +45,7 @@
                         <div class="col-md-4 flex flex-wrap gap-y-4 gap-x-1">
                         @foreach ($orders as $order)
         @foreach ($order->details as $detail)
-                            <div class="card bg-white py-4 rounded-md shadow-lg px-4 md:h-1/4 md:w-1/4 xl:w-[27rem]">
+                            <div class="card bg-white py-4 rounded-md shadow-lg px-4 md:h-1/4 md:w-1/4 xl:w-[27.1rem]">
                             <div class="md:flex  md:space-y-2 md:space-x-4">
                             
                                 <div class="card-body sm:block">

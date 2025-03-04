@@ -117,7 +117,9 @@ Route::delete('/manage-products/{id}', [ManageProductsController::class, 'destro
 
 Route::get('/', [UserController::class, 'index']);
 
-Route::get('/userdashboard', [UserDashboardController::class, 'index'])->name('userdashboard');
+Route::middleware(['web'])->group(function () {
+    Route::get('/userdashboard', [UserDashboardController::class, 'index'])->name('userdashboard')->middleware('auth');
+});
 
 
 
