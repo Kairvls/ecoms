@@ -22,7 +22,7 @@
                 <div class="block cursor-pointer">
                     <p class="ml-1">Product Image:</p>
                     <div class="textInputWrapper border shadow-lg cursor-pointer bg-[#f2f2f2]">
-                        <input name="photo" type="file" class="mt-2 cursor-pointer" required>
+                        <input name="photo" type="file" class="mt-2 ml cursor-pointer" required>
                     </div>
                 </div>
             </div>

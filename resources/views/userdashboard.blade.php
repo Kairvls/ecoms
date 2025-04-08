@@ -7,8 +7,9 @@
     
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
+    
 
 </head>
 <body>
@@ -115,62 +116,76 @@
 
 
    
-    <h1 class="flex justify-center text-4xl mb-12 -mt-10 items-center drop-shadow-xl text-white font-semibold heads">ʟᴀᴛᴇꜱᴛ ᴘʀᴏᴅᴜᴄᴛꜱ</h1>
-    
-    <div class="px-32 -mt-6 py-10 mx-auto bg-[#19191C] shadow-lg shadow-yellow-500 cursor-pointer">
+<h1 class="flex justify-center text-4xl mb-12 -mt-10 items-center drop-shadow-xl text-white font-semibold heads">
+    ʟᴀᴛᴇꜱᴛ ᴘʀᴏᴅᴜᴄᴛꜱ
+</h1>
+
+<div class="px-32 -mt-6 py-10 mx-auto bg-[#19191C] shadow-lg shadow-yellow-500 cursor-pointer">
     <div class="flex flex-wrap -m-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach($categories as $category)
-                    @foreach ($products->where('category_id', $category->id) as $product)
-                        <div class="swiper-slide p-4 md:w-1/4">
-                            <div class="h-full border-2 shadow-xl border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                                <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                     src="{{ asset('storage/' . $product->photo) }}"
-                                     alt="{{ $product->name }}">
-                                <div class="p-6">
-                                    <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                        BRAND NAME
-                                    </h2>
-                                    <h1 class="title-font text-lg font-medium text-gray-300 mb-3">
-                                        {{ $product->name }}
-                                    </h1>
-                                    <p class="leading-relaxed mb-3 text-white">{{ $product->description }}</p>
-                                    <div class="flex items-center flex-wrap">
-                                        <div x-data="{ open: false }">
-                                            <button @click="open = true"
-                                                    class="text-indigo-500 border border-yellow-500 shadow-xl py-1 px-4 rounded-sm bg-transparent hover:bg-gray-100 inline-flex items-center md:mb-2 lg:mb-0">
-                                                View
-                                                ➢
-                                            </button>
-                                            <!-- Modal -->
-                                            <div x-show="open" class="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
-                                                <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-                                                    <button @click="open = false"
-                                                            class="absolute top-2 right-2 text-gray-200 hover:text-black">
-                                                        ✖
-                                                    </button>
-                                                    <img class="w-full h-48 object-cover rounded-md"
-                                                         src="{{ asset('storage/' . $product->photo) }}"
-                                                         alt="{{ $product->name }}">
-                                                    <h2 class="text-lg font-bold text-gray-900">{{ $product->name }}</h2>
-                                                    <p class="text-gray-500">{{ $product->description }}</p>
-                                                    <span class="text-lg font-bold text-red-500">₱{{ number_format($product->price, 2) }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-md pr-3 py-1 border-r-2 border-gray-200">
-                                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>₱{{ number_format($product->price, 2) }}
-                                        </span>
-                                    </div>
+            @foreach($categories as $category)
+    @foreach ($products->where('category_id', $category->id) as $product)
+        <div class="swiper-slide p-4 md:w-1/4">
+            <div class="h-full border-2 shadow-xl border-yellow-300 border-opacity-60 rounded-lg overflow-hidden relative">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center"
+                     src="{{ asset('storage/' . $product->photo) }}"
+                     alt="{{ $product->name }}">
+
+                <div class="p-6">
+                    <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                        BRAND NAME
+                    </h2>
+                    <h1 class="title-font text-lg font-medium text-gray-300 mb-3">
+                        {{ $product->name }}
+                    </h1>
+                    <p class="leading-relaxed mb-3 text-white">{{ $product->description }}</p>
+
+                    <div class="flex items-center flex-wrap">
+                        <!-- Alpine.js for Modal (Inside Each Slide) -->
+                        <div x-data="{ open: false }" class="relative">
+                            <!-- Button to Open Modal -->
+                            <button @click="open = true"
+                                    class="text-indigo-500 border border-yellow-500 shadow-xl py-1 px-4 rounded-sm bg-transparent hover:bg-gray-100 inline-flex items-center md:mb-2 lg:mb-0">
+                                View ➢
+                            </button>
+
+                            <!-- Modal Inside Each Product Card -->
+                            <div x-show="open"
+                                 x-transition
+                                 class="absolute inset-0 justify-center items-center bg-black bg-opacity-50 z-50">
+                                <div class="bg-black rounded-bl-xl rounded-tr-xl border-t-2 border-b-2 p-6 rounded-bottom-lg bg-opacity-90 shadow-lg -ml-4 -mt-[18rem] w-[23rem] h-[19rem] grow items-center relative">
+                                    <!-- Close Button -->
+                                    <button @click="open = false"
+                                            class="absolute top-2 right-2 text-gray-400 hover:text-black">
+                                        ✖
+                                    </button>
+                                    <!-- Product Image -->
+                                    <img class="w-full h-40 object-cover rounded-md"
+                                         src="{{ asset('storage/' . $product->photo) }}"
+                                         alt="{{ $product->name }}">
+                                    <!-- Product Details -->
+                                    <h2 class="text-xl font-bold font-sans text-white mt-3 mb-2">{{ $product->name }}</h2>
+                                    <p class="text-gray-300 text-md">{{ $product->description }}</p>
+                                    <span class="text-md font-bold text-red-500">₱{{ number_format($product->price, 2) }}</span>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                @endforeach
+
+                        <!-- Product Price -->
+                        <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-md pr-3 py-1 border-r-2 border-gray-200">
+                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8-11 8-11 8-11 8-11 8-11 8-11 8-11 8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>₱{{ number_format($product->price, 2) }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endforeach
+
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -204,10 +219,12 @@
     </div>
   </div>
 </section>
+<div class="flex-col">
       @foreach($categories as $category)
-      <h1 class="flex justify-start ml-32 text-xl mb-10 mt-20 items-center drop-shadow-xl text-gray-300 head">{{ $category->name }}</h1>
+      
       
       <div class="container px-32 -mt-10 mx-auto">
+      <h1 class="flex text-xl mb-10 mt-20 items-center drop-shadow-xl text-gray-300 head">{{ $category->name }}</h1>
     <div class="flex flex-wrap -m-4">
     
     @foreach ($products->where('category_id', $category->id) as $product)
@@ -308,7 +325,7 @@
   </div>
   </div>
   @endforeach
-  
+  </div>
 
   <footer class="text-gray-600 bg-black body-font">
   <div class="container px-32 py-10 mt-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
@@ -483,9 +500,8 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         new Swiper(".mySwiper", {
-            slidesPerView: 3,   // Adjust how many products are visible
-            spaceBetween: 20,   // Spacing between slides
-            loop: true,         // Infinite loop scrolling
+            slidesPerView: 4,
+            spaceBetween: 20,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -495,12 +511,14 @@
                 clickable: true,
             },
             breakpoints: {
-                640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
-            },
+                768: { slidesPerView: 2 },
+                640: { slidesPerView: 1 },
+            }
         });
     });
 </script>
+
 
 
 </body>

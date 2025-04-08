@@ -29,7 +29,7 @@
       <div class="xl:w-1/4 md:w-1/2 p-4">
       
         <div class="cart-item bg-white mb-4 shadow-xl grow rounded-lg">
-          <div class="flex w-full md:gap-[16.5rem]">
+          <div class="flex w-full justify-between">
 
           
           <label class="neon-checkbox">
@@ -79,7 +79,7 @@
             
  
         </div>
-          <img class="h-40 rounded w-full object-cover object-center mb-6 md:max-w-[10rem] rigth-0 md:max-h-[12rem] md:min-w-[2rem] md:min-h-[2rem]" src="{{ asset('storage/' . $cartItem->product->photo) }}" alt="Product Image">
+          <img class="h-40 rounded w-full object-cover object-center mb-6 md:max-w-[20rem] rigth-0 md:max-h-[12rem] md:min-w-[2rem] md:min-h-[2rem]" src="{{ asset('storage/' . $cartItem->product->photo) }}" alt="Product Image">
           <h3 class="tracking-widest text-indigo-500 text-xs px-4 font-medium title-font">BRAND NAME</h3>
           <h2 class="text-lg text-gray-900 font-medium px-4 title-font mb-4">{{ $cartItem->product->name }}</h2>
           <p class="leading-relaxed px-4 text-base">Price: ₱{{ $cartItem->product->price }}</p>

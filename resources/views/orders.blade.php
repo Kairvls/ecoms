@@ -69,10 +69,10 @@
                             @elseif ($order->status == 'confirmed')
                                 <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="status" value="to_ship">
+                                    <input type="hidden" name="status" value="ship">
                                     <button type="submit" class="btn btn-primary bg-orange-500 px-3 hover:bg-orange-600 rounded-md text-white">Ship</button>
                                 </form>
-                            @elseif ($order->status == 'to_ship')
+                            @elseif ($order->status == 'ship')
                                 <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="status" value="delivered">

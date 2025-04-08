@@ -36,6 +36,7 @@ class ManageProductsController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'srp' => $request->srp,
             'photo' => $imagePath,
             'date_view' => now(),
             'counter' => $request->counter,
@@ -58,6 +59,7 @@ class ManageProductsController extends Controller
         
 
         $validatedData = $request->validate([
+            'category_id' => 'required|integer',
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'srp' => 'required|numeric',

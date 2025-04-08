@@ -31,7 +31,35 @@ class AuthController extends Controller
 
         return redirect()->route('login')->with('success', 'Registration successful! Please login.');
 }
-        public function login(Request $request)
+
+        public function registeed(Request $request)
+            {
+                $request->validate([
+                    'fullname' => 'required|string|max:255',
+                    'username' => 'required|string|max:255|unique:users',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:6|confirmed',
+                    'address' => 'required|string|max:255',
+                    'contact_number' => 'required|string|max:255',
+                ]);
+
+                if ($request->fails()) {
+                    return response()->json(['success' => false, 'message' => $request->errors()->first()], 422);
+                }
+
+                User::create([
+                    'fullname' => $request->fullname,
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password), // Hash password
+                    'address' => $request->address,
+                    'contact_number' => $request->contact_number,
+                ]);
+
+                return response()->json(['success' => true, 'message' => 'Registration successful!']);
+        }
+
+        public function logins(Request $request)
         {
             $credentials = $request->validate([
                 'username' => 'required|string',
@@ -47,6 +75,19 @@ class AuthController extends Controller
             }
 
             return back()->withErrors(['login' => 'Invalid username or password.']);
+        }
+
+        public function login(Request $request)
+        {
+            $credentials = $request->only('username', 'password');
+
+            $remember = $request->has('remember');
+
+            if (Auth::attempt($credentials, $remember)) {
+                return response()->json(['success' => true, 'message' => 'Login successful!']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Invalid username or password!'], 401);
+            }
         }
 
 

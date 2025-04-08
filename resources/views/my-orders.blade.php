@@ -25,8 +25,8 @@
         <div class="card">
         <div class="card-header text-center">
             <h2 class="mb-4 text-[30px] font-semibold text-gray-700 bg-white bg-opacity-50">ᴍʏ ᴏʀᴅᴇʀ(ꜱ)</h2>
-            <ul class="nav nav-tabs justify-content-center xl:gap-x-[7.9rem] md:gap-x-[7.9rem] md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
-                @foreach(['pending', 'confirmed', 'to_ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
+            <ul class="nav nav-tabs justify-between md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
+                @foreach(['pending', 'confirmed', 'ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
                     <li class="nav-item py-1 font-thin">
                         <a onclick="showColor()" class="md:mb-2 nav-link {{ $status == $tab ? 'active' : '' }}" 
                            href="{{ route('my.orders', ['status' => $tab]) }}">
@@ -42,10 +42,10 @@
         
             <div class="row mt-3">
             
-                        <div class="col-md-4 flex flex-wrap gap-y-4 gap-x-1">
+                        <div class="col-md-4 flex flex-wrap gap-y-4 justify-between">
                         @foreach ($orders as $order)
         @foreach ($order->details as $detail)
-                            <div class="card bg-white py-4 rounded-md shadow-lg px-4 md:h-1/4 md:w-1/4 xl:w-[27.1rem]">
+                            <div class="card bg-white py-4 rounded-md shadow-lg px-4">
                             <div class="md:flex  md:space-y-2 md:space-x-4">
                             
                                 <div class="card-body sm:block">
@@ -150,7 +150,7 @@
         <div class="card-header text-center">
             <h2 class="mb-4 text-[30px] font-semibold text-gray-700 bg-white bg-opacity-50">ᴍʏ ᴏʀᴅᴇʀ(ꜱ)</h2>
             <ul class="nav nav-tabs xl:gap-x-[7.9rem] justify-content-center md:flex items-center mx-auto md:py-1.5 grow bg-yellow-500 shadow-lg py-2 px-10 rounded-md">
-                @foreach(['pending', 'confirmed', 'to_ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
+                @foreach(['pending', 'confirmed', 'ship', 'delivered', 'completed', 'canceled', 'return'] as $tab)
                     <li class="nav-item py-1">
                         <a class="nav-link {{ $status == $tab ? 'active' : '' }}" 
                            href="{{ route('my.orders', ['status' => $tab]) }}">
